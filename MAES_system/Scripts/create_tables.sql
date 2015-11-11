@@ -31,12 +31,12 @@ CREATE TABLE Asistencia(
 CREATE TABLE Asesoria(
   matricula_alumno CHAR(10),
   matricula_mae CHAR(10),
-  nombre_materia SMALLINT,
+  materia SMALLINT,
   lugar SMALLINT,
   disponibilidad CHAR(1) NOT NULL,
   PRIMARY KEY (matricula_mae, matricula_alumno,
-    nombre_materia, lugar),
+    materia, lugar),
   FOREIGN KEY (matricula_mae) REFERENCES Usuario(matricula),
-  FOREIGN KEY (nombre_materia) REFERENCES Materia(id),
+  FOREIGN KEY (materia) REFERENCES Materia(id),
   FOREIGN KEY (lugar) REFERENCES Ubicacion(id)
 );
