@@ -2,11 +2,11 @@ package entidades;
 import java.sql.*;
 import java.io.*;
 
-public class MAE {
+public class Usuario {
    Connection conn;
    Statement stmt;
 
-   public MAE() {
+   public Usuario() {
       try {
         String userName = "root";
         String password = "";
@@ -49,6 +49,22 @@ public class MAE {
       } catch (SQLException e) {}
 
       return "Nombre no disponible.";
+    }
+
+    public int obtenerTipo(int iMatricula) {
+      try {
+         stmt.executeQuery ("SELECT tipo FROM Usuario WHERE matricula = " + iMatricula);
+         ResultSet rs = stmt.getResultSet();
+         if (rs.next()) { //Va al primer registro si lo hay
+            int iTipo = rs.getInt ("tipo");
+            rs.close();
+            return iTipo;
+         } else {
+           return 2;
+         }
+      } catch (SQLException e) {}
+
+      return 2;
     }
 
     private String obtenerContrasena(int iMatricula) {
