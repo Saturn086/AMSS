@@ -1,5 +1,5 @@
 package controles;
-import entidades.MAE;
+import entidades.Usuario;
 
 public class ControlVerificador {
    Usuario usuario;
@@ -10,12 +10,12 @@ public class ControlVerificador {
    }
 
    //Valida si la matricula existe en la base de datos
-   public boolean verificarCrendenciales(int iMartricula) {
-      return(usuario.verificarCrendenciales(iMartricula));
+   public boolean verificarCrendenciales(int iMartricula, String strContrasena) {
+      return(usuario.verificarCrendenciales(iMartricula, strContrasena));
    }
 
    //Regresa verdadero si el usuario es un administrador
    public boolean esAdministrador(int iMatricula) {
-     return(usuario.obtenerTipo(iMartricula) == 1);
+     return(usuario.obtenerTipo(iMatricula) == 1);
    }
 }
