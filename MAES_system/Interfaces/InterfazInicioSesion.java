@@ -1,4 +1,4 @@
-package interfaconVers;
+package interfaces;
 import controles.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
