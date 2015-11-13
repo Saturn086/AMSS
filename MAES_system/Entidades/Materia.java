@@ -18,10 +18,10 @@ public class Materia {
        } catch (Exception e) { System.out.println ("Cannot connect to database server"); }
     }
 
-	public String strObtenerNombreMateria(string strId) {
+	public String strObtenerNombreMateria(String strId) {
 		try {
 			stmt.executeQuery("SELECT nombre FROM Materia WHERE id = " + "\'"
-					+ strId + "\'");)
+					+ strId + "\'");
 			ResultSet rs = stmt.getResultSet();
 			if (rs.next()) {
 				String strNombre = rs.getString("nombre");
@@ -29,17 +29,17 @@ public class Materia {
 				return strNombre;
 			}
 			else {
-				return "Nombre no disponible."
+				return "Nombre no disponible.";
 			}
 		} catch (SQLException e) {}
 
-		return "Nombre no disponible."
+		return "Nombre no disponible.";
 	}
 
-	public boolean bolValidarMateria(string strId) {
+	public boolean bolValidarMateria(String strId) {
 		try {
 			stmt.executeQuery("SELECT nombre FROM Materia WHERE id = " + "\'"
-					+ strId + "\'");)
+					+ strId + "\'");
 			ResultSet rs = stmt.getResultSet();
 			if (rs.next()) {
 				rs.close();
