@@ -17,15 +17,15 @@ public class Usuario {
       } catch (Exception e) { System.out.println ("Cannot connect to database server"); }
    }
 
-   public boolean verificarCrendenciales(int iMatricula, String strContrasena) {
+   public boolean verificarCrendenciales(String strMatricula, String strContrasena) {
         try {
-           stmt.executeQuery ("SELECT matricula FROM Usuario WHERE matricula = " + iMatricula);
+           stmt.executeQuery ("SELECT matricula FROM Usuario WHERE matricula = " + strMatricula);
            ResultSet rs = stmt.getResultSet();
            if (rs.next()) { //Va al primer registro si lo hay
-              int iNMatricula = rs.getInt ("matricula");
+              String strNMatricula = rs.getString ("matricula");
               rs.close();
-              if (iMatricula == iNMatricula) {
-                return (strContrasena == obtenerContrasena(iMatricula));
+              if (strMatricula == strNMatricula) {
+                return (strContrasena == obtenerContrasena(strMatricula));
               }
            } else {
              return false;
@@ -35,9 +35,9 @@ public class Usuario {
         return false;
     }
 
-    public String obtenerNombre(int iMatricula) {
+    public String obtenerNombre(String strMatricula) {
       try {
-         stmt.executeQuery ("SELECT nombre FROM Usuario WHERE matricula = " + iMatricula);
+         stmt.executeQuery ("SELECT nombre FROM Usuario WHERE matricula = " + strMatricula);
          ResultSet rs = stmt.getResultSet();
          if (rs.next()) { //Va al primer registro si lo hay
             String strNombre = rs.getString ("nombre");
@@ -51,9 +51,9 @@ public class Usuario {
       return "Nombre no disponible.";
     }
 
-    public int obtenerTipo(int iMatricula) {
+    public int obtenerTipo(String strMatricula) {
       try {
-         stmt.executeQuery ("SELECT tipo FROM Usuario WHERE matricula = " + iMatricula);
+         stmt.executeQuery ("SELECT tipo FROM Usuario WHERE matricula = " + strMatricula);
          ResultSet rs = stmt.getResultSet();
          if (rs.next()) { //Va al primer registro si lo hay
             int iTipo = rs.getInt ("tipo");
@@ -67,9 +67,9 @@ public class Usuario {
       return 2;
     }
 
-    private String obtenerContrasena(int iMatricula) {
+    private String obtenerContrasena(String strMatricula) {
       try {
-         stmt.executeQuery ("SELECT contrasena FROM Usuario WHERE matricula = " + iMatricula);
+         stmt.executeQuery ("SELECT contrasena FROM Usuario WHERE matricula = " + strMatricula);
          ResultSet rs = stmt.getResultSet();
          if (rs.next()) { //Va al primer registro si lo hay
             String strContrasena = rs.getString ("contrasena");
