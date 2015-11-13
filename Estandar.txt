@@ -1,0 +1,65 @@
+Estandar
+
+
+==============================================================================
+
+Formato de nombre de variables:
+boolean	- boolNombre
+int 	- intNombre
+long 	- longNombre
+double	- numNombre
+String	- strNombre
+
+Si es una clase, sugeriria que la variable tuviera las 3 letras significativas
+de la clase. ESTO NO SE APLICA, PERO LO PONGO EN CASO DE QUE LLEGUE A SER 
+NECESARIO DURANTE EL PROCESO.
+
+Alumno	- aluAlumno
+
+
+------------------------------------------------------------------------------
+
+Para arreglos (lo sugiero, pero me gustaria saber que opinan):
+int arrintNombre [];
+int arr2intNombre [][];
+int arr3intNombre [][][];
+Y asi sucesivamente
+
+Para listas y vectores funciona de manera similar.
+
+
+------------------------------------------------------------------------------
+
+
+Operaciones numericas:
+-Para toda operacion de numeros con punto decimal, darle la parte entera 
+ y la parte decimal. Ademas, poner una letra D minuscula
+	numCantidad = 0.0d
+
+
+
+------------------------------------------------------------------------------
+
+
+Nombre de metodos:
+-Si es un Get o un Set, se quedan con el nombre getAlgo() / setAlgo()
+-Para metodos que se encargan de realizar una accion:
+	-Si regresa un valor, se le da el prefijo de que es lo que regresa
+		boolean boolRevisaSiExiste();
+		String [] arrstrObtenNombres();
+
+	-Si es un metodo void, se le da un prefijo sub (de subrutina)
+	 [podemos hablarlo y cambiarlo mejor a met si asi lo prefieren]
+		void subActualizaTabla();
+
+
+------------------------------------------------------------------------------
+
+Resulta que ya aprendi a usar los javadocs, entonces si por favor sigan
+haciendo los comentarios como lo haciamos en videojugos ;)
+
+Hay mas tags que se pueden usar, pero no recuerdo cuales son. Si quieren
+pueden buscar en la pag, pero la verdad es que no creo que sea util.
+
+
+------------------------------------------------------------------------------
