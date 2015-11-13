@@ -19,13 +19,13 @@ public class Usuario {
 
    public boolean verificarCrendenciales(String strMatricula, String strContrasena) {
         try {
-           stmt.executeQuery ("SELECT matricula FROM Usuario WHERE matricula = " + strMatricula);
+           stmt.executeQuery ("SELECT matricula FROM Usuario WHERE matricula = " + "\'" + strMatricula + "\'");
            ResultSet rs = stmt.getResultSet();
            if (rs.next()) { //Va al primer registro si lo hay
               String strNMatricula = rs.getString ("matricula");
               rs.close();
-              if (strMatricula == strNMatricula) {
-                return (strContrasena == obtenerContrasena(strMatricula));
+              if (strMatricula.equals(strNMatricula)) {
+                return (strContrasena.equals(obtenerContrasena(strMatricula)));
               }
            } else {
              return false;
@@ -37,7 +37,7 @@ public class Usuario {
 
     public String obtenerNombre(String strMatricula) {
       try {
-         stmt.executeQuery ("SELECT nombre FROM Usuario WHERE matricula = " + strMatricula);
+         stmt.executeQuery ("SELECT nombre FROM Usuario WHERE matricula = " + "\'" + strMatricula + "\'");
          ResultSet rs = stmt.getResultSet();
          if (rs.next()) { //Va al primer registro si lo hay
             String strNombre = rs.getString ("nombre");
@@ -53,7 +53,7 @@ public class Usuario {
 
     public int obtenerTipo(String strMatricula) {
       try {
-         stmt.executeQuery ("SELECT tipo FROM Usuario WHERE matricula = " + strMatricula);
+         stmt.executeQuery ("SELECT tipo FROM Usuario WHERE matricula = " + "\'" + strMatricula + "\'");
          ResultSet rs = stmt.getResultSet();
          if (rs.next()) { //Va al primer registro si lo hay
             int iTipo = rs.getInt ("tipo");
@@ -69,7 +69,7 @@ public class Usuario {
 
     private String obtenerContrasena(String strMatricula) {
       try {
-         stmt.executeQuery ("SELECT contrasena FROM Usuario WHERE matricula = " + strMatricula);
+         stmt.executeQuery ("SELECT contrasena FROM Usuario WHERE matricula = " + "\'" + strMatricula + "\'");
          ResultSet rs = stmt.getResultSet();
          if (rs.next()) { //Va al primer registro si lo hay
             String strContrasena = rs.getString ("contrasena");

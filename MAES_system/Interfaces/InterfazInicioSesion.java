@@ -45,7 +45,7 @@ public class InterfazInicioSesion extends HttpServlet {
 	}
 
 	public void introducirCredenciales(){
-		out.println("<form method=\"GET\" action=\"Autentificar\">");
+		out.println("<form method=\"GET\" action=\"InicioSesion\">");
 		out.println("<input type=\"hidden\" name=\"operacion\" value=\"autentificar\"/>");
 		out.println("<p> Matricula: \t <input type=\"text\" name=\"matricula\" size=\"15\"></p>");
 		out.println("<p> Contraseña:\t <input type=\"text\" name=\"contrasena\" size=\"15\"></p>");
@@ -63,7 +63,7 @@ public class InterfazInicioSesion extends HttpServlet {
 		if (boolExistente) {
 			out.println("<p>¡¡¡Bienvenido " + strMatricula + "!!!</p>");
 		} else {
-			out.println("<form method=\"GET\" action=\"Extraer\">");
+			out.println("<form method=\"GET\" action=\"InicioSesion\">");
 			out.println("<input type=\"hidden\" name=\"operacion\" value=\"inicio\"/>");
 			out.println("<p>Matricula y/o contraseña incorrecta</p>");
 			out.println("<p><input type=\"submit\" value=\"Regresar\"name=\"B1\"></p>");
