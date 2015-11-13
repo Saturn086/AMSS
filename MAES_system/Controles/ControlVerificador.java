@@ -3,7 +3,7 @@ import entidades.Usuario;
 
 public class ControlVerificador {
 	Usuario usuario;
-	
+
 	public ControlVerificador(){
 		//Asume que la instancia persiste durante la sesion
     	usuario = new Usuario();
