@@ -45,12 +45,10 @@ public class InterfazInicioSesion extends HttpServlet {
 	}
 
 	public void introducirCredenciales(){
-		out.println("<p>Matricula: </p>");
-
 		out.println("<form method=\"GET\" action=\"Autentificar\">");
 		out.println("<input type=\"hidden\" name=\"operacion\" value=\"autentificar\"/>");
-		out.println("<p> Matricula  <input type=\"text\" name=\"matricula\" size=\"15\"></p>");
-		out.println("<p> Contrasena  <input type=\"text\" name=\"contrasena\" size=\"15\"></p>");
+		out.println("<p> Matricula: \t <input type=\"text\" name=\"matricula\" size=\"15\"></p>");
+		out.println("<p> Contraseña:\t <input type=\"text\" name=\"contrasena\" size=\"15\"></p>");
 		out.println("<p><input type=\"submit\" value=\"Entrar\"name=\"B1\"></p>");
 		out.println("</form>");
 	}
@@ -58,16 +56,16 @@ public class InterfazInicioSesion extends HttpServlet {
 	public void autentificacion() {
 		cvVerifi = new ControlVerificador();
 
-		int intMatricula = Integer.parseInt(thisRequest.getParameter("matricula").trim());
+		String strMatricula = thisRequest.getParameter("matricula").trim();
 		String strContrasena = thisRequest.getParameter("contrasena");
 
-		boolean boolExistente = cvVerifi.verificarCrendenciales(intMatricula, strContrasena);
+		boolean boolExistente = cvVerifi.verificarCrendenciales(strMatricula, strContrasena);
 		if (boolExistente) {
-			out.println("<p>Bienvenido" + intMatricula + "!!!</p>");
+			out.println("<p>¡¡¡Bienvenido " + strMatricula + "!!!</p>");
 		} else {
 			out.println("<form method=\"GET\" action=\"Extraer\">");
 			out.println("<input type=\"hidden\" name=\"operacion\" value=\"inicio\"/>");
-			out.println("<p>Matricula y/o contrase&ntilde;a incorrecta</p>");
+			out.println("<p>Matricula y/o contraseña incorrecta</p>");
 			out.println("<p><input type=\"submit\" value=\"Regresar\"name=\"B1\"></p>");
 			out.println("</form>");
 		}

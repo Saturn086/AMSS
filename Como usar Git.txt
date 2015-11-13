@@ -7,3 +7,9 @@ Pull:
 
 Push:
 3. git push origin master
+
+
+git add .
+git commit -m ""
+git pull origin master
+git push origin master
