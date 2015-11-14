@@ -1,6 +1,7 @@
 package entidades;
 import java.sql.*;
 import java.io.*;
+import java.lang.String;
 
 public class Asesoria {
    Connection conn;
@@ -23,19 +24,21 @@ public class Asesoria {
           //Crea la instancia que será regresada por el método
           RowAsesoria rowAsesoria;
 
-           stmt.executeQuery ("SELECT *, COUNT(*) AS cantAlumnos FROM Asesoria "
-              + " WHERE matricula = " + "\'" + strMatricula + "\'" +
+           stmt.executeQuery ("SELECT *, COUNT(*) AS cantAlumnos FROM Asesoria"
+              + " WHERE matricula_mae = " + "\'" + strMatricula + "\'" +
               " GROUP BY matricula_mae, materia, lugar");
            ResultSet rs = stmt.getResultSet();
            if (rs.next()) { //Va al primer registro si lo hay
              //Crea a la instancia que será regresada como resultado del query
-              rowAsesoria = new RowAsesoria(rs.getString("matricula_mae"),
-                                rs.getInt("materia"),
-                                rs.getInt("lugar"),
-                                rs.getString("disponibilidad").charAt(0),
-                                rs.getInt("cantAlumnos"));
-              rs.close();
-              return rowAsesoria;
+            rowAsesoria = new RowAsesoria();
+            rowAsesoria.setStrMatriculaMAE(rs.getString("matricula_mae"));
+            rowAsesoria.setILugar(rs.getInt("lugar"));
+            rowAsesoria.setIMateria(rs.getInt("materia"));
+            rowAsesoria.setICantAlumnos(rs.getInt("cantAlumnos"));
+            rowAsesoria.setCDisponibilidad(rs.getString("disponibilidad").charAt(0));
+
+            rs.close();
+            return rowAsesoria;
         }
         } catch (SQLException e) {System.out.println("Error en obtenerAsesoria"+
             " dentro de Asesoria."); }

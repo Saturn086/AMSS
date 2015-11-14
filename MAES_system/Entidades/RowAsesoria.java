@@ -9,13 +9,7 @@ public class RowAsesoria
   char cDisponibilidad;
   int iCantAlumnos;
 
-  public RowAsesoria(String strMatriculaMAE, int iMateria, int iLugar,
-      char cDisponibilidad, int iCantAlumnos) {
-    this.strMatriculaMAE = strMatriculaMAE;
-    this.iMateria = iMateria;
-    this.iLugar = iLugar;
-    this.cDisponibilidad = cDisponibilidad;
-    this.iCantAlumnos = iCantAlumnos;
+  public RowAsesoria() {
   }
 
   public String getStrMatriculaMAE() {
@@ -36,5 +30,26 @@ public class RowAsesoria
 
   public int getICantAlumnos() {
     return iCantAlumnos;
+  }
+
+
+  public void setStrMatriculaMAE(String strMatriculaMAE) {
+    this.strMatriculaMAE = strMatriculaMAE;
+  }
+
+  public void setIMateria(int iMateria) {
+    this.iMateria = iMateria;
+  }
+
+  public void setILugar(int iLugar) {
+    this.iLugar = iLugar;
+  }
+
+  public void setCDisponibilidad(char cDisponibilidad) {
+    this.cDisponibilidad = cDisponibilidad;
+  }
+
+  public void setICantAlumnos(int iCantAlumnos) {
+    this.iCantAlumnos = iCantAlumnos;
   }
 }
