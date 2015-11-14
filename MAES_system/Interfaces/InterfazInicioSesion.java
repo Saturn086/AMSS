@@ -27,10 +27,17 @@ public class InterfazInicioSesion extends HttpServlet {
 		out.println("<HEAD>");
 		out.println("<META http-equiv=Content-Type content=\"text/html\">");
 		out.println("<meta charset=\"UTF-8\">");
+		out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
+		out.println("<link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">");
 		out.println("</HEAD>");
 		out.println("<BODY>");
-		out.println("<TITLE>SISTEMA MAES</TITLE>");
-		out.println("<h2>Sistema MAES</h2>");
+		out.println("<br> <br> <br>");
+		out.println("<div class=\"container text-center\">");
+		out.println("<div class=\"panel panel-default\">");
+		out.println("<div class=\"panel-heading\">");
+		out.println("<H1 class=\"panel-title\">Mentores Académicos de Excelencia</H1>");
+		out.println("</div>");
+		out.println("<div class=\"panel-body\">");
 
 		String strOperacion = request.getParameter("operacion");
 		// El menu nos envia un parametro para indicar el inicio de sesion
@@ -40,17 +47,31 @@ public class InterfazInicioSesion extends HttpServlet {
 			autentificacion();
 		}
 
+		out.println("</div>");
+		out.println("</div>");
+		out.println("</div>");
 		out.println("</BODY>");
 		out.println("</HTML>");
 	}
 
 	public void introducirCredenciales(){
+		//header
 		out.println("<h3>Iniciar Sesion</h3>");
-		out.println("<form method=\"GET\" action=\"InicioSesion\">");
+		//form
+		out.println("<form class=\"form-horizontal\" method=\"GET\" action=\"InicioSesion\">");
+		//hidden inputs
 		out.println("<input type=\"hidden\" name=\"operacion\" value=\"autentificar\"/>");
-		out.println("<p> Matricula: \t <input type=\"text\" name=\"matricula\" size=\"15\"></p>");
-		out.println("<p> Contraseña:\t <input type=\"password\" name=\"contrasena\" size=\"15\"></p>");
-		out.println("<p><input type=\"submit\" value=\"Entrar\"name=\"B1\"></p>");
+		//form groups
+		out.println("<div class=\"form-group\">");
+		out.println("<label class=\"control-label col-md-4\" for=\"text\">Matricula:</label>");
+		out.println("<div class=\"col-md-4\"> <input type=\"text\" class=\"form-control\" name=\"matricula\" placeholder=\"Introducir matricula\"> </div>" );
+		out.println("</div>");
+		out.println("<div class=\"form-group\">");
+		out.println("<label class=\"control-label col-md-4\" for=\"pwd\">Contraseña:</label>");
+		out.println("<div class=\"col-md-4\"> <input type=\"password\" class=\"form-control\" name=\"contrasena\" placeholder=\"Introducir contraseña\"> </div>" );
+		out.println("</div>");
+		//submit button
+		out.println("<p><input type=\"submit\" class=\"btn btn-default\" value=\"Entrar\"name=\"B1\"></p>");
 		out.println("</form>");
 		out.println("<br><br>");
 		out.println("<i>Administradores usar matricula A00000000</i>");
