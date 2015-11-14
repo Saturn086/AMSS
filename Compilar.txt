@@ -1,0 +1,1 @@
+javac -d ..\WEB-INF\classes *.java

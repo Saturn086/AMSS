@@ -60,7 +60,7 @@ public class Usuario {
             rs.close();
             return iTipo;
          } else {
-           return 2;
+           return 2; //2 no es un tipo valido, simboliza error
          }
       } catch (SQLException e) {}
 
