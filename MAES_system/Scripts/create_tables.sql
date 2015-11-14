@@ -7,13 +7,13 @@ CREATE TABLE Usuario(
 );
 
 CREATE TABLE Materia(
-  id SMALLINT AUTO_INCREMENT,
+  id INT AUTO_INCREMENT,
   nombre CHAR(30) NOT NULL,
   PRIMARY KEY(id)
 );
 
 CREATE TABLE Ubicacion(
-  id SMALLINT AUTO_INCREMENT,
+  id INT AUTO_INCREMENT,
   lugar CHAR(10) NOT NULL,
   PRIMARY KEY(id)
 );
@@ -31,8 +31,8 @@ CREATE TABLE Asistencia(
 CREATE TABLE Asesoria(
   matricula_alumno CHAR(10),
   matricula_mae CHAR(10),
-  materia SMALLINT,
-  lugar SMALLINT,
+  materia INT,
+  lugar INT,
   disponibilidad CHAR(1) NOT NULL,
   PRIMARY KEY (matricula_mae, matricula_alumno,
     materia, lugar),
