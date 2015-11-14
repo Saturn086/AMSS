@@ -12,17 +12,23 @@ public class ControlAsistencias {
 
 	public ControlAsistencias() {
 		asistencia = new Asistencia();
+		usuario = new Usuario();
 		matriculasList = new ArrayList<String>();
 		strResultado = "";
 	}
 
 	public String mostrarAsistencia() {
-		matriculasList = asistencia.obtenerMatriculasActivas();
+		matriculasList = asistencia.obtenerMatriculas();
 		for(String strMatricula : matriculasList) {
-			Time tTiempo = asistencia.obtenerHoras(strMatricula);
+			String strTiempo = asistencia.obtenerHoras(strMatricula);
 			String strNombre = usuario.obtenerNombre(strMatricula);
-			strResultado += strNombre + " " + tTiempo.toString() + "<br>";
+			strResultado += strNombre + " ";
+			if(strTiempo != null)
+				strResultado += strTiempo + "<br>";
+			else
+				strResultado += "No lleva horas<br>";
 		}
+		return strResultado;
 	}
 
 }

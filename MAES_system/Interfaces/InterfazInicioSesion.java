@@ -63,6 +63,7 @@ public class InterfazInicioSesion extends HttpServlet {
 		if (boolExistente) {
 			out.println("<p>���Bienvenido " + strMatricula + "!!!</p>");
 			out.println("<a href=\"mostrarMaes\"> Mostrar MAES Disponibles </a>");
+			out.println("<a href=\"mostrarAsistencia\"> Mostrar Asistencia de MAES</a>");
 		} else {
 			out.println("<form method=\"GET\" action=\"InicioSesion\">");
 			out.println("<input type=\"hidden\" name=\"operacion\" value=\"inicio\"/>");

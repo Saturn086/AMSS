@@ -38,30 +38,31 @@ public class Asistencia {
 		ArrayList<String> listaMatriculas = new ArrayList<String>();
 
 		try {
-			stmt.executeQuery ("SELECT matricula FROM Usuario WHERE matricula IS NOT \'A00000000\'");
+			stmt.executeQuery ("SELECT matricula FROM Usuario WHERE matricula != \'A00000000\'");
 			ResultSet rs = stmt.getResultSet();
 			while(rs.next()) {
+				//System.out.println(rs.getString("matricula"));
 				listaMatriculas.add(rs.getString("matricula"));
 			}
 			rs.close();
 			return listaMatriculas;
-		} catch (SQLException e) {}
-		return listaMatriculas;
+		} catch (SQLException e) {System.out.println("error in obtener matriculas");}
+		return null;
 	}
 
-	public Time obtenerHoras(String strMatricula) {
+	public String obtenerHoras(String strMatricula) {
 		try {
 			stmt.executeQuery (
 			"SELECT SEC_TO_TIME( SUM( TIME_TO_SEC( TIMEDIFF(hora_salida,hora_entrada) ) ) ) AS hours"
 			+ " FROM Asistencia"
-			+ " WHERE matricula_mae = \'" + strMatricula + "\'"
+			+ " WHERE matricula_mae = \'" + strMatricula + "\' AND hora_salida IS NOT NULL"
 			+ " GROUP BY matricula_mae");
 
 			ResultSet rs = stmt.getResultSet();
 			if(rs.next()) {
-				Time time = rs.getTime("hours");
+				String strTime = rs.getTime("hours").toString();
 				rs.close();
-				return time;
+				return strTime;
 			}
 		} catch (SQLException e) {System.out.println("error in obtener horas");}
 

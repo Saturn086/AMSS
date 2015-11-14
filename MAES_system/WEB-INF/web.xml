@@ -28,6 +28,15 @@
         <url-pattern>/mostrarMaes</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+      <servlet-name>mostrarAsistencia</servlet-name>
+      <servlet-class>interfaces.InterfazMostrarAsistencia</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mostrarAsistencia</servlet-name>
+        <url-pattern>/mostrarAsistencia</url-pattern>
+    </servlet-mapping>
+
 <!--
 <servlet>
     <servlet-name>HelloWorld</servlet-name>
