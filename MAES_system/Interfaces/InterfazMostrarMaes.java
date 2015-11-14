@@ -30,7 +30,7 @@ public class InterfazMostrarMaes extends HttpServlet {
 		out.println("<BODY>");
 		out.println("<TITLE>SISTEMA MAES</TITLE>");
 		out.println("<h2>Sistema MAES</h2>");
-		out.println("<h3>Iniciar Sesion</h3>");
+		out.println("<h3>Listado de MAES</h3>");
 
 		String strOperacion = request.getParameter("operacion");
 		// El menu nos envia un parametro para indicar el inicio de sesion
@@ -44,9 +44,9 @@ public class InterfazMostrarMaes extends HttpServlet {
 
 	public void mostrarMaes() {
 		cvActualizar = new ControlActualizarMAESDisponibles();
-		out.println("<p>");
+		out.println("<b>Nombre - Cantidad Alumnos - Materia - Disponibilidad - Ubicacion</b>");
+		out.println("<br>");
 		out.println(cvActualizar.mostrarAsesorias());
-		out.println("</p>");
 
 	}
 
