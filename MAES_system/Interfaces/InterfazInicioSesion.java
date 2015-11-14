@@ -48,7 +48,7 @@ public class InterfazInicioSesion extends HttpServlet {
 		out.println("<form method=\"GET\" action=\"InicioSesion\">");
 		out.println("<input type=\"hidden\" name=\"operacion\" value=\"autentificar\"/>");
 		out.println("<p> Matricula: \t <input type=\"text\" name=\"matricula\" size=\"15\"></p>");
-		out.println("<p> Contraseña:\t <input type=\"text\" name=\"contrasena\" size=\"15\"></p>");
+		out.println("<p> Contraseï¿½a:\t <input type=\"text\" name=\"contrasena\" size=\"15\"></p>");
 		out.println("<p><input type=\"submit\" value=\"Entrar\"name=\"B1\"></p>");
 		out.println("</form>");
 	}
@@ -61,11 +61,12 @@ public class InterfazInicioSesion extends HttpServlet {
 
 		boolean boolExistente = cvVerifi.verificarCrendenciales(strMatricula, strContrasena);
 		if (boolExistente) {
-			out.println("<p>¡¡¡Bienvenido " + strMatricula + "!!!</p>");
+			out.println("<p>ï¿½ï¿½ï¿½Bienvenido " + strMatricula + "!!!</p>");
+			out.println("<a href=\"mostrarMaes\"> Mostrar MAES Disponibles </a>");
 		} else {
 			out.println("<form method=\"GET\" action=\"InicioSesion\">");
 			out.println("<input type=\"hidden\" name=\"operacion\" value=\"inicio\"/>");
-			out.println("<p>Matricula y/o contraseña incorrecta</p>");
+			out.println("<p>Matricula y/o contraseï¿½a incorrecta</p>");
 			out.println("<p><input type=\"submit\" value=\"Regresar\"name=\"B1\"></p>");
 			out.println("</form>");
 		}

@@ -19,6 +19,14 @@
         <url-pattern>/InicioSesion</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+      <servlet-name>mostrarMaes</servlet-name>
+      <servlet-class>interfaces.InterfazMostrarMaes</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mostrarMaes</servlet-name>
+        <url-pattern>/mostrarMaes</url-pattern>
+    </servlet-mapping>
 
 <!--
 <servlet>
