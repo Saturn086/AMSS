@@ -43,8 +43,11 @@ public class ControlActualizarMAESDisponibles {
 			      String strDisponibilidad = Character.toString(rowAsesoria.getCDisponibilidad());
 			      String strUbicacion = ubicacion.strObtenerNombre(rowAsesoria.getILugar());
 
-			      strResultado += strNombre + " - " + strCantAlumnos + " - " + strNombreMateria + " - "
-			          + strDisponibilidad + " - " + strUbicacion + "<br>";
+			      strResultado += strNombre + " - " + strCantAlumnos + " - " + strNombreMateria + " - ";
+						if(strDisponibilidad.equals("0")) { strResultado += "No"; }
+						else {strResultado += "Si"; }
+
+						strResultado += " - " + strUbicacion + "<br>";
 					}
 
 	    }
