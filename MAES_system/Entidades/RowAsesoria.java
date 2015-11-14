@@ -1,6 +1,6 @@
 //Clase utilizada para guardar los datos de un reglón de la base de datos de
 //Asesoría
-
+package entidades;
 public class RowAsesoria
 {
   String strMatriculaMAE;

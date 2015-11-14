@@ -32,21 +32,18 @@ public class Asesoria {
               rowAsesoria = new RowAsesoria(rs.getString("matricula_mae"),
                                 rs.getInt("materia"),
                                 rs.getInt("lugar"),
-                                (char)rs.getString("disponibilidad"),
+                                rs.getString("disponibilidad").charAt(0),
                                 rs.getInt("cantAlumnos"));
               rs.close();
-              if (strMatricula.equals(strNMatricula)) {
-                return (strContrasena.equals(obtenerContrasena(strMatricula)));
-            }
-            else {
-              return null;
-            }
+              return rowAsesoria;
+        }
         } catch (SQLException e) {System.out.println("Error en obtenerAsesoria"+
             " dentro de Asesoria."); }
+        return null;
     }
 
     // ####################eliminarAsesoria no está completamente implementada #######################################
-    public void eliminarAsesoria(String strMatricula, int iMateria) {
+    /*public void eliminarAsesoria(String strMatricula, int iMateria) {
       try {
         //Crea la instancia que será regresada por el método
         RowAsesoria rowAsesoria = obtenerAsesoria(strMatricula);
@@ -71,5 +68,5 @@ public class Asesoria {
           " dentro de Asesoria."); }
 
       return false;
-    }
+  }*/
 }
