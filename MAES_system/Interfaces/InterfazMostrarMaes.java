@@ -26,6 +26,7 @@ public class InterfazMostrarMaes extends HttpServlet {
 		out.println("<HTML>");
 		out.println("<HEAD>");
 		out.println("<META http-equiv=Content-Type content=\"text/html\">");
+		out.println("<meta charset=\"UTF-8\">");
 		out.println("</HEAD>");
 		out.println("<BODY>");
 		out.println("<TITLE>SISTEMA MAES</TITLE>");

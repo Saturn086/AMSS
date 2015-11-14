@@ -26,11 +26,11 @@ public class InterfazInicioSesion extends HttpServlet {
 		out.println("<HTML>");
 		out.println("<HEAD>");
 		out.println("<META http-equiv=Content-Type content=\"text/html\">");
+		out.println("<meta charset=\"UTF-8\">");
 		out.println("</HEAD>");
 		out.println("<BODY>");
 		out.println("<TITLE>SISTEMA MAES</TITLE>");
 		out.println("<h2>Sistema MAES</h2>");
-		out.println("<h3>Iniciar Sesion</h3>");
 
 		String strOperacion = request.getParameter("operacion");
 		// El menu nos envia un parametro para indicar el inicio de sesion
@@ -45,12 +45,15 @@ public class InterfazInicioSesion extends HttpServlet {
 	}
 
 	public void introducirCredenciales(){
+		out.println("<h3>Iniciar Sesion</h3>");
 		out.println("<form method=\"GET\" action=\"InicioSesion\">");
 		out.println("<input type=\"hidden\" name=\"operacion\" value=\"autentificar\"/>");
 		out.println("<p> Matricula: \t <input type=\"text\" name=\"matricula\" size=\"15\"></p>");
-		out.println("<p> Contrase�a:\t <input type=\"text\" name=\"contrasena\" size=\"15\"></p>");
+		out.println("<p> Contraseña:\t <input type=\"password\" name=\"contrasena\" size=\"15\"></p>");
 		out.println("<p><input type=\"submit\" value=\"Entrar\"name=\"B1\"></p>");
 		out.println("</form>");
+		out.println("<br><br>");
+		out.println("<i>Administradores usar matricula A00000000</i>");
 	}
 
 	public void autentificacion() {
@@ -61,13 +64,14 @@ public class InterfazInicioSesion extends HttpServlet {
 
 		boolean boolExistente = cvVerifi.verificarCrendenciales(strMatricula, strContrasena);
 		if (boolExistente) {
-			out.println("<p>���Bienvenido " + strMatricula + "!!!</p>");
+			out.println("<p>¡¡¡Bienvenido " + strMatricula + "!!!</p>");
 			out.println("<a href=\"mostrarMaes\"> Mostrar MAES Disponibles </a>");
+			out.println("<br>");
 			out.println("<a href=\"mostrarAsistencia\"> Mostrar Asistencia de MAES</a>");
 		} else {
 			out.println("<form method=\"GET\" action=\"InicioSesion\">");
 			out.println("<input type=\"hidden\" name=\"operacion\" value=\"inicio\"/>");
-			out.println("<p>Matricula y/o contrase�a incorrecta</p>");
+			out.println("<p>Matricula y/o contraseña incorrecta</p>");
 			out.println("<p><input type=\"submit\" value=\"Regresar\"name=\"B1\"></p>");
 			out.println("</form>");
 		}
