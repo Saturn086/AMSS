@@ -34,16 +34,18 @@ public class ControlActualizarMAESDisponibles {
 	    matriculasList = asistencia.obtenerMatriculasActivas();
 
 	    for(String strMatricula : matriculasList) {
-	      RowAsesoria rowAsesoria = asesoria.obtenerAsesoria(strMatricula);
+	      rowAsesoriaList = asesoria.obtenerAsesoria(strMatricula);
 
-	      String strNombre = usuario.obtenerNombre(rowAsesoria.getStrMatriculaMAE());
-	      String strCantAlumnos = Integer.toString(rowAsesoria.getICantAlumnos());
-	      String strNombreMateria = materia.strObtenerNombreMateria(rowAsesoria.getIMateria());
-	      String strDisponibilidad = Character.toString(rowAsesoria.getCDisponibilidad());
-	      String strUbicacion = ubicacion.strObtenerNombre(rowAsesoria.getILugar());
+				for(RowAsesoria rowAsesoria : rowAsesoriaList) {
+			      String strNombre = usuario.obtenerNombre(rowAsesoria.getStrMatriculaMAE());
+			      String strCantAlumnos = Integer.toString(rowAsesoria.getICantAlumnos());
+			      String strNombreMateria = materia.strObtenerNombreMateria(rowAsesoria.getIMateria());
+			      String strDisponibilidad = Character.toString(rowAsesoria.getCDisponibilidad());
+			      String strUbicacion = ubicacion.strObtenerNombre(rowAsesoria.getILugar());
 
-	      strResultado += strNombre + " - " + strCantAlumnos + " - " + strNombreMateria + " - "
-	          + strDisponibilidad + " - " + strUbicacion + "\n";
+			      strResultado += strNombre + " - " + strCantAlumnos + " - " + strNombreMateria + " - "
+			          + strDisponibilidad + " - " + strUbicacion + "<br>";
+					}
 
 	    }
 		return strResultado;
