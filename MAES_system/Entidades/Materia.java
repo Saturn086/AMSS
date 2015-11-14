@@ -18,10 +18,10 @@ public class Materia {
        } catch (Exception e) { System.out.println ("Cannot connect to database server"); }
     }
 
-	public String strObtenerNombreMateria(String strId) {
+	public String strObtenerNombreMateria(int iId) {
 		try {
 			stmt.executeQuery("SELECT nombre FROM Materia WHERE id = " + "\'"
-					+ strId + "\'");
+					+ iId + "\'");
 			ResultSet rs = stmt.getResultSet();
 			if (rs.next()) {
 				String strNombre = rs.getString("nombre");

@@ -24,27 +24,28 @@ public class ControlActualizarMAESDisponibles {
       asesoria = new Asesoria();
       asistencia = new Asistencia();
       ubicacion = new Ubicacion();
-      rowAsesoria = new ArrayList<rowAsesoria>();
+      rowAsesoriaList = new ArrayList<RowAsesoria>();
       matriculasList = new ArrayList<String>();
       strResultado = "";
 	}
 
 	//Obtener todas las asesorías dadas en el momento de la consulta
 	public String mostrarAsesorias() {
-    matriculasList = asistencia.obtenerMatriculasActivas();
+	    matriculasList = asistencia.obtenerMatriculasActivas();
 
-    for(String strMatricula : matriculasList) {
-      RowAsesoria rowAsesoria = asesoria.obtenerAsesoria(strMatricula);
+	    for(String strMatricula : matriculasList) {
+	      RowAsesoria rowAsesoria = asesoria.obtenerAsesoria(strMatricula);
 
-      String strNombre = usuario.obtenerNombre(rowAsesoria.getStrMatriculaMAE());
-      String strCantAlumnos = Integer.toString(rowAsesoria.getICantAlumnos());
-      String strNombreMateria = materia.strObtenerNombreMateria(rowAsesoria.getIMateria());
-      String strDisponibilidad = Character.toString(rowAsesoria.getCDisponibilidad());
-      String strUbicacion = ubicacion.strObtenerNombre(rowAsesoria.getILugar());
+	      String strNombre = usuario.obtenerNombre(rowAsesoria.getStrMatriculaMAE());
+	      String strCantAlumnos = Integer.toString(rowAsesoria.getICantAlumnos());
+	      String strNombreMateria = materia.strObtenerNombreMateria(rowAsesoria.getIMateria());
+	      String strDisponibilidad = Character.toString(rowAsesoria.getCDisponibilidad());
+	      String strUbicacion = ubicacion.strObtenerNombre(rowAsesoria.getILugar());
 
-      strResultado += strNombre + " - " + strCantAlumnos + " - " + strNombreMateria + " - "
-          + strDisponibilidad + " - " + strUbicacion + "\n";
+	      strResultado += strNombre + " - " + strCantAlumnos + " - " + strNombreMateria + " - "
+	          + strDisponibilidad + " - " + strUbicacion + "\n";
 
-    }
+	    }
+		return strResultado;
 	}
 }

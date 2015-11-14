@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.*;
 
 
-class Asistencia {
+public class Asistencia {
 	Connection conn;
 	Statement stmt;
 
