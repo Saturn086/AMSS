@@ -33,7 +33,7 @@ public class InterfazInicioSesion extends HttpServlet {
 		out.println("<BODY>");
 		out.println("<br> <br> <br>");
 		out.println("<div class=\"container text-center\">");
-		out.println("<div class=\"panel panel-default\">");
+		out.println("<div class=\"panel panel-primary\">");
 		out.println("<div class=\"panel-heading\">");
 		out.println("<H1 class=\"panel-title\">Mentores Académicos de Excelencia</H1>");
 		out.println("</div>");
@@ -71,7 +71,7 @@ public class InterfazInicioSesion extends HttpServlet {
 		out.println("<div class=\"col-md-4\"> <input type=\"password\" class=\"form-control\" name=\"contrasena\" placeholder=\"Introducir contraseña\"> </div>" );
 		out.println("</div>");
 		//submit button
-		out.println("<p><input type=\"submit\" class=\"btn btn-default\" value=\"Entrar\"name=\"B1\"></p>");
+		out.println("<p><input type=\"submit\" class=\"btn btn-primary\" value=\"Entrar\"name=\"B1\"></p>");
 		out.println("</form>");
 		out.println("<br><br>");
 		out.println("<i>Administradores usar matricula A00000000</i>");

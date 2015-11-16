@@ -17,18 +17,19 @@ public class ControlAsistencias {
 		strResultado = "";
 	}
 
-	public String mostrarAsistencia() {
+	public ArrayList<String> mostrarAsistencia() {
 		matriculasList = asistencia.obtenerMatriculas();
+		ArrayList<String> resultList = new ArrayList<String>();
 		for(String strMatricula : matriculasList) {
 			String strTiempo = asistencia.obtenerHoras(strMatricula);
 			String strNombre = usuario.obtenerNombre(strMatricula);
-			strResultado += strNombre + " ";
+			resultList.add(strNombre);
 			if(strTiempo != null)
-				strResultado += strTiempo + "<br>";
+				resultList.add(strTiempo);
 			else
-				strResultado += "No lleva horas<br>";
+				resultList.add("No lleva horas");
 		}
-		return strResultado;
+		return resultList;
 	}
 
 }
