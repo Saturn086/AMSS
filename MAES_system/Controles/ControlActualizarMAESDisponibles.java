@@ -15,7 +15,7 @@ public class ControlActualizarMAESDisponibles {
   Ubicacion ubicacion;
   ArrayList<RowAsesoria> rowAsesoriaList;
   ArrayList<String> matriculasList;
-  String strResultado;
+  ArrayList<String> resultadoList;
 
 	public ControlActualizarMAESDisponibles() {
 		  //Asume que la instancia persiste durante la sesion
@@ -26,11 +26,11 @@ public class ControlActualizarMAESDisponibles {
       ubicacion = new Ubicacion();
       rowAsesoriaList = new ArrayList<RowAsesoria>();
       matriculasList = new ArrayList<String>();
-      strResultado = "";
+      resultadoList = new ArrayList<String>();
 	}
 
 	//Obtener todas las asesorías dadas en el momento de la consulta
-	public String mostrarAsesorias() {
+	public ArrayList<String> mostrarAsesorias() {
 	    matriculasList = asistencia.obtenerMatriculasActivas();
 
 	    for(String strMatricula : matriculasList) {
@@ -43,14 +43,16 @@ public class ControlActualizarMAESDisponibles {
 			      String strDisponibilidad = Character.toString(rowAsesoria.getCDisponibilidad());
 			      String strUbicacion = ubicacion.strObtenerNombre(rowAsesoria.getILugar());
 
-			      strResultado += strNombre + " - " + strCantAlumnos + " - " + strNombreMateria + " - ";
-						if(strDisponibilidad.equals("0")) { strResultado += "No"; }
-						else {strResultado += "Si"; }
+						resultadoList.add(strNombre);
+						resultadoList.add(strCantAlumnos);
+						resultadoList.add(strNombreMateria);
+						if(strDisponibilidad.equals("0")) { resultadoList.add("No"); }
+						else {resultadoList.add("Si"); }
 
-						strResultado += " - " + strUbicacion + "<br>";
+						resultadoList.add(strUbicacion);
 					}
 
 	    }
-		return strResultado;
+		return resultadoList;
 	}
 }
