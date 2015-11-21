@@ -55,12 +55,12 @@ public class Asesoria {
 	}
 	
 	
-	public void asignarUbicacion(String strMatricula) {
+	public void asignarUbicacion(String strMatricula, int intUbicacion) {
 		try {
 			stmt.executeQuery(
-				"ALTER Asesoria" +
-				"WHERE matricula_mae = " + "\'" + strMatricula + "\'" +
-				"MODIFY COLUMN lugar INT"
+				"UPDATE Asesoria" +
+				" SET lugar=" + intUbicacion +
+				" WHERE matricula_mae = " + "\'" + strMatricula + "\'"
 				);
 		} 
 		catch (SQLException e) {

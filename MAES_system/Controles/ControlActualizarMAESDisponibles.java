@@ -1,4 +1,4 @@
-﻿package controles;
+package controles;
 import entidades.Usuario;
 import entidades.Materia;
 import entidades.Asesoria;
@@ -29,7 +29,7 @@ public class ControlActualizarMAESDisponibles {
 		resultadoList = new ArrayList<String>();
 	}
 
-	//Obtener todas las asesorÃƒÂ­as dadas en el momento de la consulta
+	//Obtener todas las asesorÃ­as dadas en el momento de la consulta
 	public ArrayList<String> mostrarAsesorias() {
 		matriculasList = asistencia.obtenerMatriculasActivas();
 		for(String strMatricula : matriculasList) {
@@ -59,7 +59,7 @@ public class ControlActualizarMAESDisponibles {
 	}
 
 	// Mostrar los MAEs que se encuentran disponibles.
-	public ArrayList<String> desplegarMaesDisp() {
+	public ArrayList<String> desplegarUbicaciones() {
 		ArrayList<String> lstStrNombres = new ArrayList<String>();
 		int intCantUbicacion = ubicacion.intObtenerCantidadUbicaciones();
 
@@ -74,8 +74,8 @@ public class ControlActualizarMAESDisponibles {
 	}
 
 
-	// Mostrar los MAEs que se encuentran disponibles.
-	public void asginarUbicacion(String strMatricula) {
-		asesoria.asignarUbicacion(strMatricula);
+	// Asignar un mae a una ubicacion.
+	public void asginarUbicacion(String strMatricula, int intUbicacion) {
+		asesoria.asignarUbicacion(strMatricula, intUbicacion);
 	}
 }
