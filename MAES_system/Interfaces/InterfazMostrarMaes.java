@@ -27,11 +27,18 @@ public class InterfazMostrarMaes extends HttpServlet {
 		out.println("<HEAD>");
 		out.println("<META http-equiv=Content-Type content=\"text/html\">");
 		out.println("<meta charset=\"UTF-8\">");
+		out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
+		out.println("<link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">");
 		out.println("</HEAD>");
 		out.println("<BODY>");
-		out.println("<TITLE>SISTEMA MAES</TITLE>");
-		out.println("<h2>Sistema MAES</h2>");
-		out.println("<h3>Listado de MAES</h3>");
+		out.println("<br> <br> <br>");
+		out.println("<div class=\"container text-center\">");
+		out.println("<div class=\"panel panel-primary\">");
+		out.println("<div class=\"panel-heading\">");
+		out.println("<H1 class=\"panel-title\">Mentores Académicos de Excelencia</H1>");
+		out.println("</div>");
+		out.println("<div class=\"panel-body\">");
+		out.println("<h3>MAES Disponibiles</h3> <br>");
 
 		String strOperacion = request.getParameter("operacion");
 		// El menu nos envia un parametro para indicar el inicio de sesion
@@ -45,9 +52,27 @@ public class InterfazMostrarMaes extends HttpServlet {
 
 	public void mostrarMaes() {
 		cvActualizar = new ControlActualizarMAESDisponibles();
-		out.println("<b>Nombre - Cantidad Alumnos - Materia - Disponibilidad - Ubicacion</b>");
-		out.println("<br>");
-		out.println(cvActualizar.mostrarAsesorias());
+		ArrayList<String> lista = cvActualizar.mostrarAsesorias();
+		out.println("<div class=\"center-block\" style=\"width:80%\">");
+		out.println("<table class=\"table text-center\">");
+		out.println("<tr>");
+		out.println("<th class=\"text-center\">Nombre</th>");
+		out.println("<th class=\"text-center\">Cantidad de alumnos</th>");
+		out.println("<th class=\"text-center\">Materia</th>");
+		out.println("<th class=\"text-center\">Disponibilidad</th>");
+		out.println("<th class=\"text-center\">Ubicacion</th>");
+		out.println("</tr>");
+		for(int i=0;i<lista.size();i+=5) {
+			out.println("<tr>");
+			out.println("<td>" + lista.get(i) + "</td>");
+			out.println("<td>" + lista.get(i+1) + "</td>");
+			out.println("<td>" + lista.get(i+2) + "</td>");
+			out.println("<td>" + lista.get(i+3) + "</td>");
+			out.println("<td>" + lista.get(i+4) + "</td>");
+			out.println("</tr>");
+		}
+		out.println("</table>");
+		out.println("<div>");
 
 	}
 

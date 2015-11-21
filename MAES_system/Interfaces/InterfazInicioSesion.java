@@ -86,9 +86,12 @@ public class InterfazInicioSesion extends HttpServlet {
 		boolean boolExistente = cvVerifi.verificarCrendenciales(strMatricula, strContrasena);
 		if (boolExistente) {
 			out.println("<p>¡¡¡Bienvenido " + strMatricula + "!!!</p>");
-			out.println("<a href=\"mostrarMaes\"> Mostrar MAES Disponibles </a>");
-			out.println("<br>");
-			out.println("<a href=\"mostrarAsistencia\"> Mostrar Asistencia de MAES</a>");
+			out.println("<a href=\"mostrarMaes\" type=\"button\" class=\"btn btn-primary\"> Lista de MAES Disponibles </a> <br>");
+			//ligas a funciones de administradores
+			if(strMatricula.equals("A00000000")) {
+				out.println("<br> <p> Funciones de administrador </p>");
+				out.println("<a href=\"mostrarAsistencia\" type=\"button\" class=\"btn btn-primary\"> Lista de Asistencia de MAES </a> <br>");
+			}
 		} else {
 			out.println("<form method=\"GET\" action=\"InicioSesion\">");
 			out.println("<input type=\"hidden\" name=\"operacion\" value=\"inicio\"/>");

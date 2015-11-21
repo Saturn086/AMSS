@@ -9,6 +9,7 @@ import java.util.*;
 
 public class ControlActualizarMAESDisponibles {
 	Usuario usuario;
+<<<<<<< HEAD
 	Materia materia;
 	Asesoria asesoria;
 	Asistencia asistencia;
@@ -32,6 +33,31 @@ public class ControlActualizarMAESDisponibles {
 	//Obtener todas las asesorias dadas en el momento de la consulta
 	public String mostrarAsesorias() {
 		matriculasList = asistencia.obtenerMatriculasActivas();
+=======
+  Materia materia;
+  Asesoria asesoria;
+  Asistencia asistencia;
+  Ubicacion ubicacion;
+  ArrayList<RowAsesoria> rowAsesoriaList;
+  ArrayList<String> matriculasList;
+  ArrayList<String> resultadoList;
+
+	public ControlActualizarMAESDisponibles() {
+		  //Asume que la instancia persiste durante la sesion
+    	usuario = new Usuario();
+      materia = new Materia();
+      asesoria = new Asesoria();
+      asistencia = new Asistencia();
+      ubicacion = new Ubicacion();
+      rowAsesoriaList = new ArrayList<RowAsesoria>();
+      matriculasList = new ArrayList<String>();
+      resultadoList = new ArrayList<String>();
+	}
+
+	//Obtener todas las asesorías dadas en el momento de la consulta
+	public ArrayList<String> mostrarAsesorias() {
+	    matriculasList = asistencia.obtenerMatriculasActivas();
+>>>>>>> 94d71347c5aca5226bf5618a4b2eea0a0e8e6dcf
 
 		for(String strMatricula : matriculasList) {
 			rowAsesoriaList = asesoria.obtenerAsesoria(strMatricula);
@@ -43,6 +69,7 @@ public class ControlActualizarMAESDisponibles {
 					String strDisponibilidad = Character.toString(rowAsesoria.getCDisponibilidad());
 					String strUbicacion = ubicacion.strObtenerNombre(rowAsesoria.getILugar());
 
+<<<<<<< HEAD
 					strResultado += strNombre + " - " + strCantAlumnos + " - " + strNombreMateria + " - ";
 					if(strDisponibilidad.equals("0")) {
 						strResultado += "No";
@@ -55,6 +82,19 @@ public class ControlActualizarMAESDisponibles {
 				}
 		}
 		return strResultado;
+=======
+						resultadoList.add(strNombre);
+						resultadoList.add(strCantAlumnos);
+						resultadoList.add(strNombreMateria);
+						if(strDisponibilidad.equals("0")) { resultadoList.add("No"); }
+						else {resultadoList.add("Si"); }
+
+						resultadoList.add(strUbicacion);
+					}
+
+	    }
+		return resultadoList;
+>>>>>>> 94d71347c5aca5226bf5618a4b2eea0a0e8e6dcf
 	}
 	
 	// Mostrar los MAEs que se encuentran disponibles.

@@ -23,7 +23,7 @@ public class Asistencia {
 	public ArrayList<String> obtenerMatriculasActivas() {
 		ArrayList<String> listaMatriculas = new ArrayList<String>();
 		try {
-			stmt.executeQuery ("SELECT matricula_mae FROM Asistencia WHERE hora_salida IS NULL and fecha = CURDATE()");
+			stmt.executeQuery ("SELECT matricula_mae FROM Asistencia WHERE hora_salida IS NULL");
 			ResultSet rs = stmt.getResultSet();
 			while(rs.next()) {
 				listaMatriculas.add(rs.getString("matricula_mae"));
