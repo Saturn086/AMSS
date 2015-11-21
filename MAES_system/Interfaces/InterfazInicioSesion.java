@@ -90,8 +90,8 @@ public class InterfazInicioSesion extends HttpServlet {
 			//ligas a funciones de administradores
 			if(strMatricula.equals("A00000000")) {
 				out.println("<br> <p> Funciones de administrador </p>");
-				out.println("<a href=\"mostrarMaes\" type=\"button\" class=\"btn btn-primary\"> Lista de MAES Disponibles </a> <br> <br>");
-				out.println("<a href=\"mostrarAsistencia\" type=\"button\" class=\"btn btn-primary\"> Lista de Asistencia de MAES </a> <br>");
+				out.println("<a href=\"mostrarMaes?matricula=\"" + strMatricula + "\" type=\"button\" class=\"btn btn-primary\"> Lista de MAES Disponibles </a> <br> <br>");
+				out.println("<a href=\"mostrarAsistencia?matricula=\"" + strMatricula + "\" type=\"button\" class=\"btn btn-primary\"> Lista de Asistencia de MAES </a> <br>");
 			}
 		} else {
 			out.println("<form method=\"GET\" action=\"InicioSesion\">");
