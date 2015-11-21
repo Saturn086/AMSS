@@ -94,27 +94,22 @@ public class Asistencia {
 		try {
 			stmt.executeQuery (
 				"SELECT hora_entrada, hora_salida, fecha," +
-				"SEC_TO_TIME( SUM( TIME_TO_SEC( TIMEDIFF(hora_salida,hora_entrada) ) ) ) AS hours" +
+				"SEC_TO_TIME(( TIME_TO_SEC( TIMEDIFF(hora_salida,hora_entrada) ) ) ) AS hours" +
 				" FROM Asistencia" +
-				" WHERE matricula_mae = \'" + strMatricula + "\' AND hora_salida IS NOT NULL" +
-				" GROUP BY matricula_mae"
-				);
+				" WHERE matricula_mae = \'" + strMatricula + "\' AND hora_salida IS NOT NULL");
 
 			ResultSet rs = stmt.getResultSet();
-
-
-
+			RowHistorial rowHistorial;
 			while(rs.next()) {
-				RowHistorial rowHistorial = new RowHistorial(rs.getDate("fecha").toString(),
+
+				resultList.add( new RowHistorial(rs.getDate("fecha").toString(),
 						rs.getTime("hora_entrada").toString(),
 				 		rs.getTime("hora_salida").toString(),
-						rs.getTime("hours").toString());
-
-				resultList.add(rowHistorial);
+						rs.getTime("hours").toString()));
 			}
 			rs.close();
 		} catch (SQLException e) {System.out.println("error en obtener historial ");}
-
+		
 		return resultList;
 		}
 

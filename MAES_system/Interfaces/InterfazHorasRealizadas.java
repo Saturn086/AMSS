@@ -26,6 +26,8 @@ public class InterfazHorasRealizadas extends HttpServlet {
 		out = thisResponse.getWriter();
 		//Preparar el encabezado de la pagina Web de respuesta
 
+
+
 		String strNombre = request.getParameter("nombre");
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">");
 		out.println("<HTML>");
@@ -48,18 +50,37 @@ public class InterfazHorasRealizadas extends HttpServlet {
 		controlVerificador = new ControlVerificador();
 		controlAsistencias = new ControlAsistencias();
 
-		String strMatricula =	controlVerificador.obtenerMatricula(strNombre);
-		ArrayList<RowHistorial> historial = controlAsistencias.obtenerHistorial(strMatricula);
-
-		for(RowHistorial r : historial) {
-			out.println("<p>" + r.getStrFecha() + " " + r.getStrHoraE() + " " + r.getStrHoraS() + " " + r.getStrHours() + "</p>");
+		String strOperacion = request.getParameter("operacion");
+		// El menu nos envia un parametro para indicar el inicio de sesion
+		if (strOperacion == null) {
+			mostrarHistorial(strNombre);
 		}
+		else {
+			String strMatricula =	controlVerificador.obtenerMatricula(strNombre);
+			ArrayList<RowHistorial> historial = controlAsistencias.obtenerHistorial(strMatricula);
+			RowHistorial row = historial.get(Integer.parseInt(request.getParameter("valor")));
+
+			controlAsistencias.borrarAsistencia(strMatricula, row.getStrFecha(), row.getStrHoraE());
+			mostrarHistorial(strNombre);
+		}
+
+
 
 		out.println("</div>");
 		out.println("</div>");
 		out.println("</div>");
 		out.println("</BODY>");
 		out.println("</HTML>");
+	}
+
+	private void mostrarHistorial(String strNombre) {
+		String strMatricula =	controlVerificador.obtenerMatricula(strNombre);
+		ArrayList<RowHistorial> historial = controlAsistencias.obtenerHistorial(strMatricula);
+		int iI = 0;
+		for(RowHistorial r : historial) {
+			out.println("<p><a href=\"horasRealizadas?valor=" + iI + "&operacion=borrar&nombre=" + strNombre + "\">" + iI + "</a> - " + r.getStrFecha() + " " + r.getStrHoraE() + " " + r.getStrHoraS() + " " + r.getStrHours() + "</p>");
+			iI++;
+		}
 	}
 
 }
