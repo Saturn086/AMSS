@@ -22,4 +22,8 @@ public class ControlVerificador {
 	public String obtenerMatricula(String strNombre) {
 		return usuario.obtenerMatricula(strNombre);
 	}
+
+	public String obtenerNombre(String strMatricula) {
+		return usuario.obtenerNombre(strMatricula);
+	}
 }

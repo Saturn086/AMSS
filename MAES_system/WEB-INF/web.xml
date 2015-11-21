@@ -55,6 +55,15 @@
         <url-pattern>/horasRealizadas</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+      <servlet-name>controlAsesorias</servlet-name>
+      <servlet-class>interfaces.InterfazControlAsesorias</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>controlAsesorias</servlet-name>
+        <url-pattern>/controlAsesorias</url-pattern>
+    </servlet-mapping>
+
 <!--
 <servlet>
     <servlet-name>HelloWorld</servlet-name>
