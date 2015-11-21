@@ -5,12 +5,12 @@ import javax.servlet.http.*;
 import java.io.*;
 import java.util.*;
 
-public class InterfazRegistrarUbicacion extends HttpServlet {
+public class InterfazControlAsesorias extends HttpServlet {
 	HttpServletResponse thisResponse;
 	HttpServletRequest thisRequest;
 	PrintWriter out;
 	//declarar controladores
-	ControlActualizarMAESDisponibles caMaes;
+	ControlVerificador cvVerificador;
 
 
 	//Es importante observar que todos los metodos definen la operacion GET para
@@ -39,53 +39,32 @@ public class InterfazRegistrarUbicacion extends HttpServlet {
 		out.println("<H1 class=\"panel-title\">Mentores Académicos de Excelencia</H1>");
 		out.println("</div>");
 		out.println("<div class=\"panel-body\">");
-		out.println("<h3>Seleccion de Ubicacion</h3> <br>");
+		out.println("<h3>Control de Asesorias</h3> <br>");
 
 		String strOperacion = request.getParameter("operacion");
 		// El menu nos envia un parametro para indicar el inicio de sesion
 		if (strOperacion == null) {
-			mostrarUbicacion();
-		}
-		else {
-			guardarUbicacion();
+			mostrarControl();
 		}
 
 		out.println("</BODY>");
 		out.println("</HTML>");
 	}
 
-	public void mostrarUbicacion() {
+	public void mostrarControl() {
+		cvVerificador = new ControlVerificador();
 		String strMatricula = thisRequest.getParameter("matricula");
-		caMaes = new ControlActualizarMAESDisponibles();
-		ArrayList<String> ubicaciones = caMaes.desplegarUbicaciones();
-		out.println("<form class=\"form-horizontal\" method=\"GET\" action=\"registrarUbicacion\">");
-		//hidden inputs
-		out.println("<input type=\"hidden\" name=\"operacion\" value=\"guardar\"/>");
-		out.println("<input type=\"hidden\" name=\"matricula\" value=\""+ strMatricula +"\"/>");
-		//select box
-		out.println("<div class=\"form-group\">");
-		out.println("<select class=\"form-control\" name=\"ubicacion\">");
-		out.println("<option value=\"0\"> </option>");
-		for(int i=0;i<ubicaciones.size();i+=2) {
-			out.println("<option value=\"" + ubicaciones.get(i)  + "\">" + ubicaciones.get(i+1) + "</option>");
-		}
-		out.println("</select>");
-		out.println("</div>");
+		String strNombre = cvVerificador.obtenerNombre(strMatricula);
+		out.println("<p> Nombre de MAE: " + strNombre + "</p>");
+		out.println("<p> Status: Disponible");
+		out.println("<a href=\"#\"> Cambiar status </a>");
+		out.println("</p>");
+		out.println("<a href=\"#\"> Finalizar Sesión </a>");
+		
 
-		out.println("<p>" + ubicaciones.get(1) + "</p>");
-		//boton
-		out.println("<p><input type=\"submit\" class=\"btn btn-primary\" value=\"Entrar\"name=\"B1\"></p>");
-		out.println("</form>");
-	}
 
-	public void guardarUbicacion() {
-		caMaes = new ControlActualizarMAESDisponibles();
-		String strMatricula = thisRequest.getParameter("matricula");
 
-		int iUbicacion = Integer.parseInt(thisRequest.getParameter("ubicacion"));
-		caMaes.asginarUbicacion(strMatricula, iUbicacion);
-		out.println("<p> Ubicacion asignada </p>");
-		out.println("<a href=\"controlAsesorias?matricula=" + strMatricula + "\"> Ir a pantalla de sesión</a>");
+
 	}
 
 }
