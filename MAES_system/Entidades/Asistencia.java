@@ -196,5 +196,20 @@ public class Asistencia {
 		}
 		return null;
 	}
-
+	
+	
+	public void borrarAsistencia(String strMatricula, String strFecha, String strHora) {
+		try {
+			stmt.executeUpdate (
+				"DELETE" +
+				" FROM Asistencia" +
+				" WHERE matricula_mae =" + "\'" + strMatricula + "\'" + " AND" +
+						" fecha =" + "\'" + strFecha + "\'" + " AND" +
+						" hora_entrada =" + "\'" + strHora + "\'"
+				);
+		}
+		catch (SQLException e) {
+			System.out.println("Error en obtenerMateriasYAlumnos" + " dentro de Asistencia.");
+		}
+	}
 }
