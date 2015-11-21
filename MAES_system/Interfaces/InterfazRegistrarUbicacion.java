@@ -79,7 +79,7 @@ public class InterfazRegistrarUbicacion extends HttpServlet {
 	public void guardarUbicacion() {
 		caMaes = new ControlActualizarMAESDisponibles();
 		//String strMatricula = thisRequest.getParameter("matricula");
-		int iUbicacion = thisRequest.getParameter("ubicacion");
+		String iUbicacion = thisRequest.getParameter("ubicacion");
 
 
 
