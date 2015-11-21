@@ -58,7 +58,7 @@ public class InterfazHorasRealizadas extends HttpServlet {
 		else {
 			String strMatricula =	controlVerificador.obtenerMatricula(strNombre);
 			ArrayList<RowHistorial> historial = controlAsistencias.obtenerHistorial(strMatricula);
-			RowHistorial row = historial[Integer.parseInt(request.getParameter("valor"))];
+			RowHistorial row = historial.get(Integer.parseInt(request.getParameter("valor")));
 
 			controlAsistencias.borrarAsistencia(strMatricula, row.getStrFecha(), row.getStrHoraE());
 			mostrarHistorial(strNombre);
