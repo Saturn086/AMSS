@@ -70,7 +70,7 @@ public class InterfazControlAsesorias extends HttpServlet {
 			out.println("<p> Status: No Disponible" );
 		out.println("<a href=\"controlAsesorias?operacion=cambiarStatus&matricula=" + strMatricula + "\"> Cambiar status</a>");
 		out.println("</p>");
-		out.println("<a href=\"#\"> Finalizar Sesión </a>");
+		out.println("<a href=\"InicioSesion?operacion=registrarSalida&matricula=" + strMatricula + "\"> Finalizar Sesión </a>");
 		ArrayList<String> materiasList = cmAlumnos.obtenerMateriasYAlumnos(strMatricula);
 
 		out.println("<div class=\"center-block\" style=\"width:80%\">");

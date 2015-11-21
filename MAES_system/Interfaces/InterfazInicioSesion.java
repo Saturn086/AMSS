@@ -45,6 +45,8 @@ public class InterfazInicioSesion extends HttpServlet {
 			introducirCredenciales();
 		}else if (strOperacion.equals("autentificar")) {
 			autentificacion();
+		}else if(strOperacion.equals("registrarSalida")) {
+			registrarSesion();
 		}
 
 		out.println("</div>");
@@ -102,5 +104,12 @@ public class InterfazInicioSesion extends HttpServlet {
 			out.println("<p><input type=\"submit\" value=\"Regresar\"name=\"B1\"></p>");
 			out.println("</form>");
 		}
+	}
+
+	public void registrarSesion() {
+		caAsistencias = new ControlAsistencias();
+		String strMatricula = thisRequest.getParameter("matricula").trim();
+		caAsistencias.guardarAsistenciaFin(strMatricula);
+		introducirCredenciales();
 	}
 }
