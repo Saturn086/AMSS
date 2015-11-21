@@ -4,13 +4,13 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
 import java.util.*;
-import controles.ControlVerificador;
 
 public class InterfazInicioSesion extends HttpServlet {
 	HttpServletResponse thisResponse;
 	HttpServletRequest thisRequest;
 	PrintWriter out;
 	ControlVerificador cvVerifi;
+	ControlAsistencias caAsistencias;
 
 	//Es importante observar que todos los metodos definen la operacion GET para
 	//	que el metodo doGet sea el que se ejecuta al presionar el boton "Enviar".
@@ -79,12 +79,14 @@ public class InterfazInicioSesion extends HttpServlet {
 
 	public void autentificacion() {
 		cvVerifi = new ControlVerificador();
+		caAsistencias = new ControlAsistencias();
 
 		String strMatricula = thisRequest.getParameter("matricula").trim();
 		String strContrasena = thisRequest.getParameter("contrasena");
 
 		boolean boolExistente = cvVerifi.verificarCrendenciales(strMatricula, strContrasena);
 		if (boolExistente) {
+			caAsistencias.guardarAsistenciaInicio(strMatricula);
 			out.println("<p>¡¡¡Bienvenido " + strMatricula + "!!!</p>");
 			out.println("<a href=\"registrarUbicacion?matricula=" + strMatricula + "\" type=\"button\" class=\"btn btn-primary\"> Registar mi Ubicacion </a> <br>");
 			//ligas a funciones de administradores

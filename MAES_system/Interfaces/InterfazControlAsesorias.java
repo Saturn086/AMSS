@@ -12,6 +12,7 @@ public class InterfazControlAsesorias extends HttpServlet {
 	//declarar controladores
 	ControlVerificador cvVerificador;
 	ControlModificadorAlumnosAtendidos cmAlumnos;
+	ControlActualizarMAESDisponibles caMaes;
 
 
 	//Es importante observar que todos los metodos definen la operacion GET para
@@ -47,6 +48,9 @@ public class InterfazControlAsesorias extends HttpServlet {
 		if (strOperacion == null) {
 			mostrarControl();
 		}
+		else {
+			cambiarStatus();
+		}
 
 		out.println("</BODY>");
 		out.println("</HTML>");
@@ -55,11 +59,16 @@ public class InterfazControlAsesorias extends HttpServlet {
 	public void mostrarControl() {
 		cvVerificador = new ControlVerificador();
 		cmAlumnos = new ControlModificadorAlumnosAtendidos();
+		caMaes = new ControlActualizarMAESDisponibles();
+
 		String strMatricula = thisRequest.getParameter("matricula");
 		String strNombre = cvVerificador.obtenerNombre(strMatricula);
 		out.println("<p> Nombre de MAE: " + strNombre + "</p>");
-		out.println("<p> Status: Disponible");
-		out.println("<a href=\"#\"> Cambiar status </a>");
+		if(caMaes.obtenerDisponibilidad(strMatricula))
+			out.println("<p> Status: Disponible" );
+		else
+			out.println("<p> Status: No Disponible" );
+		out.println("<a href=\"controlAsesorias?operacion=cambiarStatus&matricula=" + strMatricula + "\"> Cambiar status</a>");
 		out.println("</p>");
 		out.println("<a href=\"#\"> Finalizar Sesión </a>");
 		ArrayList<String> materiasList = cmAlumnos.obtenerMateriasYAlumnos(strMatricula);
@@ -80,6 +89,13 @@ public class InterfazControlAsesorias extends HttpServlet {
 		out.println("<div>");
 
 
+	}
+
+	public void cambiarStatus() {
+		caMaes = new ControlActualizarMAESDisponibles();
+		String strMatricula = thisRequest.getParameter("matricula");
+		caMaes.modificarDisponibilidad(strMatricula);
+		mostrarControl();
 	}
 
 }

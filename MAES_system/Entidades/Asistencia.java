@@ -143,8 +143,9 @@ public class Asistencia {
 	public void guardarAsistenciaInicio(String strMatricula, String strFecha, String strHora) {
 		try {
 			stmt.executeUpdate (
-				"INSERT INTO Asistencia (matricula_mae,hora_entrada,fecha)"
-				+ strMatricula + "," + strHora + "," + strFecha
+				/*"INSERT INTO Asistencia (matricula_mae,hora_entrada,hora_salida,fecha)"
+				+ strMatricula + "," + strHora + "," + strFecha */
+				"INSERT INTO Asistencia VALUES (\'"+ strMatricula + "\',\'" + strHora + "\',NULL,\'" + strFecha + "\')"
 				);
 		}
 		catch (SQLException e) {
