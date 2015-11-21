@@ -1,4 +1,4 @@
-package controles;
+﻿package controles;
 import entidades.Usuario;
 import entidades.Materia;
 import entidades.Asesoria;
@@ -29,20 +29,18 @@ public class ControlActualizarMAESDisponibles {
       resultadoList = new ArrayList<String>();
 	}
 
-	//Obtener todas las asesorías dadas en el momento de la consulta
+	//Obtener todas las asesorÃ­as dadas en el momento de la consulta
 	public ArrayList<String> mostrarAsesorias() {
 	    matriculasList = asistencia.obtenerMatriculasActivas();
-
-	    for(String strMatricula : matriculasList) {
-	      rowAsesoriaList = asesoria.obtenerAsesoria(strMatricula);
+		for(String strMatricula : matriculasList) {
+			rowAsesoriaList = asesoria.obtenerAsesoria(strMatricula);
 
 				for(RowAsesoria rowAsesoria : rowAsesoriaList) {
-			      String strNombre = usuario.obtenerNombre(rowAsesoria.getStrMatriculaMAE());
-			      String strCantAlumnos = Integer.toString(rowAsesoria.getICantAlumnos());
-			      String strNombreMateria = materia.strObtenerNombreMateria(rowAsesoria.getIMateria());
-			      String strDisponibilidad = Character.toString(rowAsesoria.getCDisponibilidad());
-			      String strUbicacion = ubicacion.strObtenerNombre(rowAsesoria.getILugar());
-
+					String strNombre = usuario.obtenerNombre(rowAsesoria.getStrMatriculaMAE());
+					String strCantAlumnos = Integer.toString(rowAsesoria.getICantAlumnos());
+					String strNombreMateria = materia.strObtenerNombreMateria(rowAsesoria.getIMateria());
+					String strDisponibilidad = Character.toString(rowAsesoria.getCDisponibilidad());
+					String strUbicacion = ubicacion.strObtenerNombre(rowAsesoria.getILugar());
 						resultadoList.add(strNombre);
 						resultadoList.add(strCantAlumnos);
 						resultadoList.add(strNombreMateria);
@@ -54,5 +52,27 @@ public class ControlActualizarMAESDisponibles {
 
 	    }
 		return resultadoList;
+
+	}
+	
+	// Mostrar los MAEs que se encuentran disponibles.
+	public ArrayList<String> desplegarMaesDisp() {
+		ArrayList<String> lstStrNombres = new ArrayList<String>();
+		int intCantUbicacion = ubicacion.intObtenerCantidadUbicaciones();
+
+		for(int i = 1; i <= intCantUbicacion; i++) {
+			String strUbicacion = ubicacion.strObtenerNombre(i);
+			
+			lstStrNombres.add(i + "");
+			lstStrNombres.add(strUbicacion);
+		}
+		
+		return lstStrNombres;
+	}
+	
+	
+	// Mostrar los MAEs que se encuentran disponibles.
+	public void asginarUbicacion(String strMatricula) {
+		asesoria.asignarUbicacion(strMatricula);
 	}
 }
