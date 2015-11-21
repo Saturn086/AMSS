@@ -26,5 +26,4 @@ public class ControlVerificador {
 	public String obtenerNombre(String strMatricula) {
 		return usuario.obtenerNombre(strMatricula);
 	}
-
 }
