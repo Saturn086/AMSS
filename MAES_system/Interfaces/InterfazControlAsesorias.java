@@ -62,9 +62,6 @@ public class InterfazControlAsesorias extends HttpServlet {
 		out.println("<a href=\"#\"> Finalizar Sesión </a>");
 		
 
-
-
-
 	}
 
 }
