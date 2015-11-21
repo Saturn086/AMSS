@@ -1,4 +1,4 @@
-package controles;
+﻿package controles;
 import entidades.Usuario;
 import entidades.Materia;
 import entidades.Asesoria;
@@ -9,50 +9,53 @@ import java.util.*;
 
 public class ControlActualizarMAESDisponibles {
 	Usuario usuario;
-  Materia materia;
-  Asesoria asesoria;
-  Asistencia asistencia;
-  Ubicacion ubicacion;
-  ArrayList<RowAsesoria> rowAsesoriaList;
-  ArrayList<String> matriculasList;
-  ArrayList<String> resultadoList;
+	Materia materia;
+	Asesoria asesoria;
+	Asistencia asistencia;
+	Ubicacion ubicacion;
+	ArrayList<RowAsesoria> rowAsesoriaList;
+	ArrayList<String> matriculasList;
+	ArrayList<String> resultadoList;
 
 	public ControlActualizarMAESDisponibles() {
-		  //Asume que la instancia persiste durante la sesion
-    	usuario = new Usuario();
-      materia = new Materia();
-      asesoria = new Asesoria();
-      asistencia = new Asistencia();
-      ubicacion = new Ubicacion();
-      rowAsesoriaList = new ArrayList<RowAsesoria>();
-      matriculasList = new ArrayList<String>();
-      resultadoList = new ArrayList<String>();
+		//Asume que la instancia persiste durante la sesion
+		usuario = new Usuario();
+		materia = new Materia();
+		asesoria = new Asesoria();
+		asistencia = new Asistencia();
+		ubicacion = new Ubicacion();
+		rowAsesoriaList = new ArrayList<RowAsesoria>();
+		matriculasList = new ArrayList<String>();
+		resultadoList = new ArrayList<String>();
 	}
 
-	//Obtener todas las asesorÃ­as dadas en el momento de la consulta
+	//Obtener todas las asesorÃƒÂ­as dadas en el momento de la consulta
 	public ArrayList<String> mostrarAsesorias() {
-	    matriculasList = asistencia.obtenerMatriculasActivas();
+		matriculasList = asistencia.obtenerMatriculasActivas();
 		for(String strMatricula : matriculasList) {
 			rowAsesoriaList = asesoria.obtenerAsesoria(strMatricula);
-
-				for(RowAsesoria rowAsesoria : rowAsesoriaList) {
-					String strNombre = usuario.obtenerNombre(rowAsesoria.getStrMatriculaMAE());
-					String strCantAlumnos = Integer.toString(rowAsesoria.getICantAlumnos());
-					String strNombreMateria = materia.strObtenerNombreMateria(rowAsesoria.getIMateria());
-					String strDisponibilidad = Character.toString(rowAsesoria.getCDisponibilidad());
-					String strUbicacion = ubicacion.strObtenerNombre(rowAsesoria.getILugar());
-						resultadoList.add(strNombre);
-						resultadoList.add(strCantAlumnos);
-						resultadoList.add(strNombreMateria);
-						if(strDisponibilidad.equals("0")) { resultadoList.add("No"); }
-						else {resultadoList.add("Si"); }
-
-						resultadoList.add(strUbicacion);
-					}
-
-	    }
+			
+			for(RowAsesoria rowAsesoria : rowAsesoriaList) {
+				String strNombre = usuario.obtenerNombre(rowAsesoria.getStrMatriculaMAE());
+				String strCantAlumnos = Integer.toString(rowAsesoria.getICantAlumnos());
+				String strNombreMateria = materia.strObtenerNombreMateria(rowAsesoria.getIMateria());
+				String strDisponibilidad = Character.toString(rowAsesoria.getCDisponibilidad());
+				String strUbicacion = ubicacion.strObtenerNombre(rowAsesoria.getILugar());
+				resultadoList.add(strNombre);
+				resultadoList.add(strCantAlumnos);
+				resultadoList.add(strNombreMateria);
+				
+				if (strDisponibilidad.equals("0")) {
+					resultadoList.add("No"); 
+				}
+				else {
+					resultadoList.add("Si");
+				}
+				
+				resultadoList.add(strUbicacion);
+			}
+		}
 		return resultadoList;
-
 	}
 
 	// Mostrar los MAEs que se encuentran disponibles.
