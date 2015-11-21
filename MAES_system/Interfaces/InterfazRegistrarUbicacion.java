@@ -4,6 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
 import java.util.*;
+import controles.ControlVerificador;
 
 public class InterfazRegistrarUbicacion extends HttpServlet {
 	HttpServletResponse thisResponse;
@@ -72,7 +73,6 @@ public class InterfazRegistrarUbicacion extends HttpServlet {
 		out.println("</select>");
 		out.println("</div>");
 
-		out.println("<p>" + ubicaciones.get(1) + "</p>");
 		//boton
 		out.println("<p><input type=\"submit\" class=\"btn btn-primary\" value=\"Entrar\"name=\"B1\"></p>");
 		out.println("</form>");
@@ -85,7 +85,7 @@ public class InterfazRegistrarUbicacion extends HttpServlet {
 		int iUbicacion = Integer.parseInt(thisRequest.getParameter("ubicacion"));
 		caMaes.asginarUbicacion(strMatricula, iUbicacion);
 		out.println("<p> Ubicacion asignada </p>");
-		out.println("<a href=\"controlAsesorias?matricula=" + strMatricula + "\"> Ir a pantalla de sesión</a>");
+		out.println("<a href=\"#\"> Ir a pantalla de sesión</a>");
 	}
 
 }

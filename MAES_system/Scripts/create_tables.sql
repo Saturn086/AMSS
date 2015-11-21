@@ -14,7 +14,7 @@ CREATE TABLE Materia(
 
 CREATE TABLE Ubicacion(
   id INT AUTO_INCREMENT,
-  lugar CHAR(30) NOT NULL,
+  lugar CHAR(10) NOT NULL,
   PRIMARY KEY(id)
 );
 

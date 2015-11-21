@@ -135,4 +135,31 @@ public class Asistencia {
 			System.out.println("Error en guardarAsistenciaInicio" + " dentro de Asistencia.");
 		}
 	}
+	
+	public ArrayList<String> obtenerMateriasYAlumnos(String strMatricula) {
+		try {
+			stmt.executeQuery (
+				"SELECT nombre, COUNT(*) as numero" +
+				" FROM Asesoria, Materia" +
+				" WHERE matricula_mae =" + "\'" + strMatricula + "\'" + " AND id = materia" +
+				" GROUP BY nombre"
+				);
+			
+			ResultSet rs = stmt.getResultSet();
+			
+			ArrayList<String> lststrMatsYAlumnos = new ArrayList<String>();
+			
+			while(rs.next()) {
+				lststrMatsYAlumnos.add(rs.getString("nombre"));
+				lststrMatsYAlumnos.add(rs.getString("numero"));
+			}
+			
+			rs.close();
+			return lststrMatsYAlumnos;
+		}
+		catch (SQLException e) {
+			System.out.println("Error en obtenerMateriasYAlumnos" + " dentro de Asistencia.");
+		}
+		return null;
+	}
 }
