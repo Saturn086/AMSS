@@ -68,8 +68,8 @@ public class Asesoria {
 			System.out.println("Error en asignarUbicacion" + " dentro de Asesoria.");
 		}
 	}
-	
-	
+
+
 	public boolean obtenerDisponibilidad(String strMatricula) {
 		try {
 			stmt.executeQuery(
@@ -81,9 +81,9 @@ public class Asesoria {
 
 			if (rs.next()) { //Va al primer registro si lo hay
 				String strDisp = rs.getString("disponibilidad");
-				
+
 				rs.close();
-				
+
 				return strDisp.equals("1");
 			}
 			else {
@@ -94,22 +94,22 @@ public class Asesoria {
 		catch (SQLException e) {
 			System.out.println("Error en obtenerDisponibilidad" + " dentro de Asesoria.");
 		}
-		
+
 		return false;
 	}
-	
-	
+
+
 	public boolean modificarDisponibilidad(String strMatricula) {
 		try {
 			String strDisp;
-			
+
 			if (obtenerDisponibilidad(strMatricula)) {
-				strDisp = "1";
-			}
-			else {
 				strDisp = "0";
 			}
-			
+			else {
+				strDisp = "1";
+			}
+
 			stmt.executeUpdate(
 				"UPDATE asesoria" +
 				" SET disponibilidad = " + "\'" + strDisp + "\'" +
@@ -119,7 +119,7 @@ public class Asesoria {
 		catch (SQLException e) {
 			System.out.println("Error en obtenerDisponibilidad" + " dentro de Asesoria.");
 		}
-		
+
 		return false;
 	}
 
