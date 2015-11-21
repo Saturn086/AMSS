@@ -37,6 +37,15 @@
         <url-pattern>/mostrarAsistencia</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+      <servlet-name>registrarUbicacion</servlet-name>
+      <servlet-class>interfaces.InterfazRegistrarUbicacion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>registrarUbicacion</servlet-name>
+        <url-pattern>/registrarUbicacion</url-pattern>
+    </servlet-mapping>
+
 <!--
 <servlet>
     <servlet-name>HelloWorld</servlet-name>
