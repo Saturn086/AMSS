@@ -30,7 +30,8 @@ public class Asesoria {
 
 			stmt.executeQuery ("SELECT *, COUNT(*) AS cantAlumnos FROM Asesoria" +
 				" WHERE matricula_mae = " + "\'" + strMatricula + "\'" +
-				" GROUP BY matricula_mae, materia, lugar");
+				" GROUP BY matricula_mae, materia, lugar"
+				);
 			ResultSet rs = stmt.getResultSet();
 
 			while (rs.next()) { //Va al primer registro si lo hay
@@ -59,12 +60,67 @@ public class Asesoria {
 		try {
 			stmt.executeUpdate(
 				"UPDATE Asesoria" +
-				" SET lugar = " + intUbicacion +
-				" WHERE matricula_mae = " + "\'" + strMatricula + "\'");
+				" SET lugar = " + "\'" + intUbicacion + "\'" +
+				" WHERE matricula_mae = " + "\'" + strMatricula + "\'"
+				);
 		}
 		catch (SQLException e) {
-			System.out.println("Error en subAsignarUbicacion" + " dentro de Asesoria." + intUbicacion + " " + strMatricula);
+			System.out.println("Error en asignarUbicacion" + " dentro de Asesoria.");
 		}
+	}
+	
+	
+	public boolean obtenerDisponibilidad(String strMatricula) {
+		try {
+			stmt.executeQuery(
+				"SELECT disponibilidad" +
+				" FROM asesoria" +
+				" WHERE matricula_mae = " + "\'" + strMatricula + "\'"
+				);
+			ResultSet rs = stmt.getResultSet();
+
+			if (rs.next()) { //Va al primer registro si lo hay
+				String strDisp = rs.getString("disponibilidad");
+				
+				rs.close();
+				
+				return strDisp.equals("1");
+			}
+			else {
+				rs.close();
+				return false;
+			}
+		}
+		catch (SQLException e) {
+			System.out.println("Error en obtenerDisponibilidad" + " dentro de Asesoria.");
+		}
+		
+		return false;
+	}
+	
+	
+	public boolean modificarDisponibilidad(String strMatricula) {
+		try {
+			String strDisp;
+			
+			if (obtenerDisponibilidad(strMatricula)) {
+				strDisp = "1";
+			}
+			else {
+				strDisp = "0";
+			}
+			
+			stmt.executeUpdate(
+				"UPDATE asesoria" +
+				" SET disponibilidad = " + "\'" + strDisp + "\'" +
+				" WHERE matricula_mae = " + "\'" + strMatricula + "\'"
+				);
+		}
+		catch (SQLException e) {
+			System.out.println("Error en obtenerDisponibilidad" + " dentro de Asesoria.");
+		}
+		
+		return false;
 	}
 
     // ####################eliminarAsesoria no está completamente implementada #######################################
