@@ -46,6 +46,15 @@
         <url-pattern>/registrarUbicacion</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+      <servlet-name>horasRealizadas</servlet-name>
+      <servlet-class>interfaces.InterfazHorasRealizadas</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>horasRealizadas</servlet-name>
+        <url-pattern>/horasRealizadas</url-pattern>
+    </servlet-mapping>
+
 <!--
 <servlet>
     <servlet-name>HelloWorld</servlet-name>

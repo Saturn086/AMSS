@@ -4,13 +4,13 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
 import java.util.*;
-import controles.ControlAsistencias;
+import controles.ControlVerificador;
 
-public class InterfazMostrarAsistencia extends HttpServlet {
+public class InterfazHorasRealizadas extends HttpServlet {
 	HttpServletResponse thisResponse;
 	HttpServletRequest thisRequest;
 	PrintWriter out;
-	ControlAsistencias caAsistencia;
+	ControlVerificador cvVerifi;
 
 	//Es importante observar que todos los metodos definen la operacion GET para
 	//	que el metodo doGet sea el que se ejecuta al presionar el boton "Enviar".
@@ -29,6 +29,7 @@ public class InterfazMostrarAsistencia extends HttpServlet {
 		out.println("<meta charset=\"UTF-8\">");
 		out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
 		out.println("<link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">");
+    out.println("<h3>Horas realizadas</h3> <br>");
 		out.println("</HEAD>");
 		out.println("<BODY>");
 		out.println("<br> <br> <br>");
@@ -38,37 +39,13 @@ public class InterfazMostrarAsistencia extends HttpServlet {
 		out.println("<H1 class=\"panel-title\">Mentores Académicos de Excelencia</H1>");
 		out.println("</div>");
 		out.println("<div class=\"panel-body\">");
-		out.println("<h3>Asistencia de MAES</h3> <br>");
 
-		String strOperacion = request.getParameter("operacion");
-		// El menu nos envia un parametro para indicar el inicio de sesion
-		if (strOperacion == null) {
-			mostrarAsistencia();
-		}
 
+		out.println("</div>");
+		out.println("</div>");
+		out.println("</div>");
 		out.println("</BODY>");
 		out.println("</HTML>");
 	}
 
-
-  public void mostrarAsistencia() {
-    caAsistencia = new ControlAsistencias();
-    ArrayList<String> lista = caAsistencia.mostrarAsistencia();
-
-		out.println("<div class=\"center-block\" style=\"width:80%\">");
-		out.println("<table class=\"table text-center\">");
-		out.println("<tr>");
-		out.println("<th class=\"text-center\">Nombre</th>");
-		out.println("<th class=\"text-center\">Horas completadas</th>");
-		out.println("</tr>");
-		for(int i=0;i<lista.size();i+=2) {
-			out.println("<tr>");
-			out.println("<td><a href=\"horasRealizadas\">" + lista.get(i) + "</a></td>");
-			out.println("<td>" + lista.get(i+1) + "</td>");
-			out.println("</tr>");
-		}
-		out.println("</table>");
-		out.println("<div>");
-
-  }
 }
