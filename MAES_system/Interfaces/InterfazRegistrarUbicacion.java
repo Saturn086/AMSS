@@ -11,6 +11,8 @@ public class InterfazRegistrarUbicacion extends HttpServlet {
 	HttpServletRequest thisRequest;
 	PrintWriter out;
 	//declarar controladores
+	ControlActualizarMAESDisponibles caMaes;
+
 
 	//Es importante observar que todos los metodos definen la operacion GET para
 	//	que el metodo doGet sea el que se ejecuta al presionar el boton "Enviar".
@@ -43,15 +45,44 @@ public class InterfazRegistrarUbicacion extends HttpServlet {
 		String strOperacion = request.getParameter("operacion");
 		// El menu nos envia un parametro para indicar el inicio de sesion
 		if (strOperacion == null) {
-			mostrarSeleccion();
+			mostrarUbicacion();
+		}
+		else {
+			guardarUbicacion();
 		}
 
 		out.println("</BODY>");
 		out.println("</HTML>");
 	}
 
-	public void mostrarSeleccion() {
-		out.println("Seleccion de Ubicacion");
+	public void mostrarUbicacion() {
+		caMaes = new ControlActualizarMAESDisponibles();
+		ArrayList<String> ubicaciones = caMaes.desplegarUbicaciones();
+		out.println("<form class=\"form-horizontal\" method=\"GET\" action=\"registrarUbicacion\">");
+		//hidden inputs
+		out.println("<input type=\"hidden\" name=\"operacion\" value=\"guardar\"/>");
+		//select box
+		out.println("<div class=\"form-group\">");
+		out.println("<select class=\"form-control\" name=\"ubicacion\">");
+		out.println("<option value=\"0\"> </option>");
+		for(int i=0;i<ubicaciones.size();i+=2) {
+			out.println("<option value=\"" + ubicaciones.get(i)  + "\">" + ubicaciones.get(i+1) + "</option>");
+		}
+		out.println("</select>");
+		out.println("</div>");
+
+		//boton
+		out.println("<p><input type=\"submit\" class=\"btn btn-primary\" value=\"Entrar\"name=\"B1\"></p>");
+		out.println("</form>");
+	}
+
+	public void guardarUbicacion() {
+		caMaes = new ControlActualizarMAESDisponibles();
+		//String strMatricula = thisRequest.getParameter("matricula");
+		int iUbicacion = thisRequest.getParameter("ubicacion");
+
+
+
 	}
 
 }

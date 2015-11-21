@@ -14,9 +14,9 @@ public class Ubicacion {
 			Class.forName ("com.mysql.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection (url, userName, password);
 			stmt = conn.createStatement();
-		} 
-		catch (Exception e) { 
-			System.out.println ("Cannot connect to database server"); 
+		}
+		catch (Exception e) {
+			System.out.println ("Cannot connect to database server");
 		}
 	}
 
@@ -28,7 +28,7 @@ public class Ubicacion {
 				int iCont = rs.getInt("numero");
 				rs.close();
 				return iCont;
-			} 
+			}
 			else {
 				return -1;
 			}
@@ -42,10 +42,10 @@ public class Ubicacion {
 	public String strObtenerNombre(int iId) {
 		try {
 			stmt.executeQuery(
-				"SELECT lugar" +
+				"SELECT lugar " +
 				"FROM Ubicacion WHERE id = " + "\'" + iId + "\'"
 				);
-				
+
 			ResultSet rs = stmt.getResultSet();
 			if (rs.next()) {
 				String strNombre = rs.getString("lugar");
@@ -59,6 +59,6 @@ public class Ubicacion {
 		catch (SQLException e) {
 			System.out.println("Error en strObtenerNombre" + " dentro de Ubicacion.");
 		}
-		return "Nombre no disponible.";
+		return "1 no disponible.";
 	}
 }
