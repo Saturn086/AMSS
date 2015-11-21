@@ -33,7 +33,7 @@ public class InterfazRegistrarUbicacion extends HttpServlet {
 		out.println("</HEAD>");
 		out.println("<BODY>");
 		out.println("<br> <br> <br>");
-		out.println("<div class=\"container text-center\">");
+		out.println("<div class=\"container\" align=\"center\">");
 		out.println("<div class=\"panel panel-primary\">");
 		out.println("<div class=\"panel-heading\">");
 		out.println("<H1 class=\"panel-title\">Mentores Académicos de Excelencia</H1>");
@@ -63,8 +63,8 @@ public class InterfazRegistrarUbicacion extends HttpServlet {
 		out.println("<input type=\"hidden\" name=\"operacion\" value=\"guardar\"/>");
 		out.println("<input type=\"hidden\" name=\"matricula\" value=\""+ strMatricula +"\"/>");
 		//select box
-		out.println("<div class=\"form-group\">");
-		out.println("<select class=\"form-control\" name=\"ubicacion\">");
+		out.println("<div class=\"form-group\" style=\"width:40%\">");
+		out.println("<select class=\"form-control text-center\" name=\"ubicacion\">");
 		out.println("<option value=\"0\"> </option>");
 		for(int i=0;i<ubicaciones.size();i+=2) {
 			out.println("<option value=\"" + ubicaciones.get(i)  + "\">" + ubicaciones.get(i+1) + "</option>");
@@ -72,7 +72,6 @@ public class InterfazRegistrarUbicacion extends HttpServlet {
 		out.println("</select>");
 		out.println("</div>");
 
-		out.println("<p>" + ubicaciones.get(1) + "</p>");
 		//boton
 		out.println("<p><input type=\"submit\" class=\"btn btn-primary\" value=\"Entrar\"name=\"B1\"></p>");
 		out.println("</form>");
