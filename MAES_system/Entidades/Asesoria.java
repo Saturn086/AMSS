@@ -16,9 +16,9 @@ public class Asesoria {
 			Class.forName ("com.mysql.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection (url, userName, password);
 			stmt = conn.createStatement();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("Cannot connect to database server"); 
+			System.out.println("Cannot connect to database server");
 		}
 	}
 
@@ -32,7 +32,7 @@ public class Asesoria {
 				" WHERE matricula_mae = " + "\'" + strMatricula + "\'" +
 				" GROUP BY matricula_mae, materia, lugar");
 			ResultSet rs = stmt.getResultSet();
-			
+
 			while (rs.next()) { //Va al primer registro si lo hay
 				//Crea a la instancia que será regresada como resultado del query
 				rowAsesoria = new RowAsesoria();
@@ -43,31 +43,31 @@ public class Asesoria {
 				rowAsesoria.setCDisponibilidad(rs.getString("disponibilidad").charAt(0));
 				rowAsesoriaList.add(rowAsesoria);
 			}
-			
+
 			rs.close();
 			return rowAsesoriaList;
-		} 
+		}
 		catch (SQLException e) {
 			System.out.println("Error en obtenerAsesoria" + " dentro de Asesoria.");
 		}
-		
+
 		return null;
 	}
-	
-	
+
+
 	public void asignarUbicacion(String strMatricula, int intUbicacion) {
 		try {
 			stmt.executeQuery(
 				"UPDATE Asesoria" +
 				" SET lugar=" + intUbicacion +
-				" WHERE matricula_mae = " + "\'" + strMatricula + "\'"
+				" WHERE matricula_mae=" + "\'" + strMatricula + "\'"
 				);
-		} 
+		}
 		catch (SQLException e) {
 			System.out.println("Error en subAsignarUbicacion" + " dentro de Asesoria.");
 		}
 	}
-	
+
     // ####################eliminarAsesoria no está completamente implementada #######################################
     /*public void eliminarAsesoria(String strMatricula, int iMateria) {
       try {
