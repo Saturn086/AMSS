@@ -38,7 +38,10 @@ public class Asistencia {
 			}
 			rs.close();
 			return listaMatriculas;
-		} catch (SQLException e) {}
+		}
+		catch (SQLException e) {
+			System.out.println("Error en obtenerMatriculasActivas" + " dentro de Asistencia.");
+		}
 		return listaMatriculas;
 	}
 
@@ -77,7 +80,10 @@ public class Asistencia {
 				rs.close();
 				return strTime;
 			}
-		} catch (SQLException e) {System.out.println("error in obtener horas");}
+		}
+		catch (SQLException e) {
+			System.out.println("error in obtener horas");
+		}
 
 		return null;
 	}
@@ -93,13 +99,6 @@ public class Asistencia {
 				" WHERE matricula_mae = \'" + strMatricula + "\' AND hora_salida IS NOT NULL" +
 				" GROUP BY matricula_mae"
 				);
-
-				/*"SELECT TIME_TO_SEC(hora_entrada) AS hora_entrada, TIME_TO_SEC(hora_salida) AS hora_salida, " +
-				"day(fecha) AS day, month(fecha) AS month, year(fecha), SEC_TO_TIME( SUM( TIME_TO_SEC( TIMEDIFF" +
-				"(hora_salida,hora_entrada) ) ) ) AS hours" +
-				" FROM Asistencia" +
-				" WHERE matricula_mae = \'" + strMatricula + "\' AND hora_salida IS NOT NULL" +
-				" GROUP BY matricula_mae"*/
 
 			ResultSet rs = stmt.getResultSet();
 
@@ -118,58 +117,84 @@ public class Asistencia {
 
 		return resultList;
 		}
-	}
 
-	/*
-	public void guardarAsistenciaInicio(String strMatricula) {
+	public boolean esEntrada(String strMatricula) {
 		try {
-			GregorianCalendar gregCal = (GregorianCalendar) Calendar.getInstance();
-
-			int intDay = gregCal.get(Calendar.DATE);
-			int intMonth = gregCal.get(Calendar.MONTH);
-			int intYeat = gregCal.get(Calendar.YEAR);
-
-			String strDay = intDay + "";
-			String strMonth = intMonth + "";
-			String strYear = intYeat + "";
-
-			if (intDay < 10) {
-				strDay = "0" + strDay;
-			}
-			if (intMonth < 10) {
-				strMonth = "0" + strMonth;
-			}
-
-			String strFecha = strYear + "-" + strMonth + "-" + strDay;
-
-			int intMinute = gregCal.get(Calendar.MINUTE);
-			int intHour = gregCal.get(Calendar.HOUR_OF_DAY);
-
-			String strMinute = intMinute + "";
-			String strHour =  + "";
-			String strYear =  + "";
-
-			if (intMinute < 10) {
-				strDay = "0" + strDay;
-			}
-			if (intMonth < 10) {
-				strMonth = "0" + strMonth;
-			}
-
 			stmt.executeQuery (
-				"INSERT INTO Asistencia (matricula_mae,hora_entrada,fecha)"
-				+ strMatricula + "," + + "," + strFecha
+				"SELECT matricula_mae" +
+				" FROM Asistencia" +
+				" WHERE matricula_mae = " +  "\'" + strMatricula + "\'" + " AND hora_salida = ISNOTNULL"
 				);
 
+			ResultSet rs = stmt.getResultSet();
+
+			if(rs.next()) {
+				rs.close();
+				return true;
+			}
+			else {
+				rs.close();
+				return false;
+			}
+		}
+		catch (SQLException e) {
+			System.out.println("Error en guardarAsistenciaInicio" + " dentro de Asistencia.");
+		}
+
+		return false;
+	}
+
+
+	public void guardarAsistenciaInicio(String strMatricula, String strFecha, String strHora) {
+		try {
+			stmt.executeUpdate (
+				"INSERT INTO Asistencia (matricula_mae,hora_entrada,fecha)"
+				+ strMatricula + "," + strHora + "," + strFecha
+				);
+		}
+		catch (SQLException e) {
+			System.out.println("Error en guardarAsistenciaInicio" + " dentro de Asistencia.");
+		}
+	}
+
+	public void guardarAsistenciaFin(String strMatricula, String strHora) {
+		try {
+			stmt.executeUpdate (
+				"UPDATE Asistencia" +
+				" SET hora_salida=" + "\'" + strHora + "\'" +
+				" WHERE matricula_mae=" + "\'" + strMatricula + "\'"
+				);
+		}
+		catch (SQLException e) {
+			System.out.println("Error en guardarAsistenciaInicio" + " dentro de Asistencia.");
+		}
+	}
+
+	public ArrayList<String> obtenerMateriasYAlumnos(String strMatricula) {
+		try {
+			stmt.executeQuery (
+				"SELECT nombre, COUNT(*) as numero" +
+				" FROM Asesoria, Materia" +
+				" WHERE matricula_mae =" + "\'" + strMatricula + "\'" + " AND id = materia" +
+				" GROUP BY nombre"
+				);
 
 			ResultSet rs = stmt.getResultSet();
-			if(rs.next()) {
-				String strTime = rs.getTime("hours").toString();
-				rs.close();
-				return strTime;
-			}
-		} catch (SQLException e) {System.out.println("error in obtener horas");}
 
+			ArrayList<String> lststrMatsYAlumnos = new ArrayList<String>();
+
+			while(rs.next()) {
+				lststrMatsYAlumnos.add(rs.getString("nombre"));
+				lststrMatsYAlumnos.add(rs.getString("numero"));
+			}
+
+			rs.close();
+			return lststrMatsYAlumnos;
+		}
+		catch (SQLException e) {
+			System.out.println("Error en obtenerMateriasYAlumnos" + " dentro de Asistencia.");
+		}
 		return null;
 	}
-	*/
+
+}
