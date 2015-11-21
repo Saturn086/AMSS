@@ -57,14 +57,13 @@ public class Asesoria {
 
 	public void asignarUbicacion(String strMatricula, int intUbicacion) {
 		try {
-			stmt.executeQuery(
+			stmt.executeUpdate(
 				"UPDATE Asesoria" +
-				" SET lugar=" + intUbicacion +
-				" WHERE matricula_mae=" + "\'" + strMatricula + "\'"
-				);
+				" SET lugar = " + intUbicacion +
+				" WHERE matricula_mae = " + "\'" + strMatricula + "\'");
 		}
 		catch (SQLException e) {
-			System.out.println("Error en subAsignarUbicacion" + " dentro de Asesoria.");
+			System.out.println("Error en subAsignarUbicacion" + " dentro de Asesoria." + intUbicacion + " " + strMatricula);
 		}
 	}
 
