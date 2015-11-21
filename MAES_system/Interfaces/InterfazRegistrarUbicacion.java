@@ -56,11 +56,13 @@ public class InterfazRegistrarUbicacion extends HttpServlet {
 	}
 
 	public void mostrarUbicacion() {
+		String strMatricula = thisRequest.getParameter("matricula");
 		caMaes = new ControlActualizarMAESDisponibles();
 		ArrayList<String> ubicaciones = caMaes.desplegarUbicaciones();
 		out.println("<form class=\"form-horizontal\" method=\"GET\" action=\"registrarUbicacion\">");
 		//hidden inputs
 		out.println("<input type=\"hidden\" name=\"operacion\" value=\"guardar\"/>");
+		out.println("<input type=\"hidden\" name=\"matricula\" value=\""+ strMatricula +"\"/>");
 		//select box
 		out.println("<div class=\"form-group\">");
 		out.println("<select class=\"form-control\" name=\"ubicacion\">");
@@ -78,11 +80,10 @@ public class InterfazRegistrarUbicacion extends HttpServlet {
 
 	public void guardarUbicacion() {
 		caMaes = new ControlActualizarMAESDisponibles();
-		//String strMatricula = thisRequest.getParameter("matricula");
-		String iUbicacion = thisRequest.getParameter("ubicacion");
-
-
-
+		String strMatricula = thisRequest.getParameter("matricula");
+		String iUbicacion = Integer.parseInt(thisRequest.getParameter("ubicacion"));
+		caMaes.asignarUbicacion(strMatricula, iUbicacion);
+		out.println("<p> Ubicacion asignada </p>");
 	}
 
 }
