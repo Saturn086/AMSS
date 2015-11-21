@@ -77,57 +77,56 @@ public class Asistencia {
 		return null;
 	}
 	
-	/*
-	public void guardarAsistenciaInicio(String strMatricula) {
+	
+	public boolean esEntrada(String strMatricula) {
 		try {
-			GregorianCalendar gregCal = (GregorianCalendar) Calendar.getInstance();
-			
-			int intDay = gregCal.get(Calendar.DATE);
-			int intMonth = gregCal.get(Calendar.MONTH);
-			int intYeat = gregCal.get(Calendar.YEAR);
-			
-			String strDay = intDay + "";
-			String strMonth = intMonth + "";
-			String strYear = intYeat + "";
-			
-			if (intDay < 10) {
-				strDay = "0" + strDay;
-			}
-			if (intMonth < 10) {
-				strMonth = "0" + strMonth;
-			}	
-			
-			String strFecha = strYear + "-" + strMonth + "-" + strDay;
-			
-			int intMinute = gregCal.get(Calendar.MINUTE);
-			int intHour = gregCal.get(Calendar.HOUR_OF_DAY);
-			
-			String strMinute = intMinute + "";
-			String strHour =  + "";
-			String strYear =  + "";
-			
-			if (intMinute < 10) {
-				strDay = "0" + strDay;
-			}
-			if (intMonth < 10) {
-				strMonth = "0" + strMonth;
-			}	
-			
 			stmt.executeQuery (
-				"INSERT INTO Asistencia (matricula_mae,hora_entrada,fecha)"
-				+ strMatricula + "," + + "," + strFecha
+				"SELECT matricula_mae" +
+				" FROM Asistencia" + 
+				" WHERE matricula_mae = " +  "\'" + strMatricula + "\'" + " AND hora_salida = ISNOTNULL"
 				);
 			
-			
 			ResultSet rs = stmt.getResultSet();
+			
 			if(rs.next()) {
-				String strTime = rs.getTime("hours").toString();
 				rs.close();
-				return strTime;
+				return true;
 			}
-		} catch (SQLException e) {System.out.println("error in obtener horas");}
-
-		return null;
+			else {
+				rs.close();
+				return false;
+			}
+		} 
+		catch (SQLException e) {
+			System.out.println("Error en guardarAsistenciaInicio" + " dentro de Asistencia.");
+		}
+		
+		return false;
 	}
-	*/
+	
+	
+	public void guardarAsistenciaInicio(String strMatricula, String strFecha, String strHora) {
+		try {
+			stmt.executeUpdate (
+				"INSERT INTO Asistencia (matricula_mae,hora_entrada,fecha)"
+				+ strMatricula + "," + strHora + "," + strFecha
+				);
+		} 
+		catch (SQLException e) {
+			System.out.println("Error en guardarAsistenciaInicio" + " dentro de Asistencia.");
+		}
+	}
+	
+	public void guardarAsistenciaFin(String strMatricula, String strHora) {
+		try {
+			stmt.executeUpdate (
+				"UPDATE Asistencia" +
+				" SET hora_salida=" + "\'" + strHora + "\'" +
+				" WHERE matricula_mae=" + "\'" + strMatricula + "\'"
+				);
+		} 
+		catch (SQLException e) {
+			System.out.println("Error en guardarAsistenciaInicio" + " dentro de Asistencia.");
+		}
+	}
 }

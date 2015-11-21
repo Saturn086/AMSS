@@ -30,6 +30,7 @@ public class Ubicacion {
 				return iCont;
 			}
 			else {
+				rs.close();
 				return -1;
 			}
 		}
@@ -53,6 +54,7 @@ public class Ubicacion {
 				return strNombre;
 			}
 			else {
+				rs.close();
 				return "Nombre no disponible.";
 			}
 		}
