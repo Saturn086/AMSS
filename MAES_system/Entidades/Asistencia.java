@@ -33,7 +33,10 @@ public class Asistencia {
 			}
 			rs.close();
 			return listaMatriculas;
-		} catch (SQLException e) {}
+		} 
+		catch (SQLException e) {
+			System.out.println("Error en obtenerMatriculasActivas" + " dentro de Asistencia.");
+		}
 		return listaMatriculas;
 	}
 
@@ -72,7 +75,10 @@ public class Asistencia {
 				rs.close();
 				return strTime;
 			}
-		} catch (SQLException e) {System.out.println("error in obtener horas");}
+		} 
+		catch (SQLException e) {
+			System.out.println("error in obtener horas");
+		}
 
 		return null;
 	}
