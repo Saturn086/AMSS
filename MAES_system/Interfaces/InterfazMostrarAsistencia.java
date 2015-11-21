@@ -63,7 +63,7 @@ public class InterfazMostrarAsistencia extends HttpServlet {
 		out.println("</tr>");
 		for(int i=0;i<lista.size();i+=2) {
 			out.println("<tr>");
-			out.println("<td><a href=\"horasRealizadas\">" + lista.get(i) + "</a></td>");
+			out.println("<td><a href=\"horasRealizadas?nombre=" + lista.get(i) + "\">" + lista.get(i) + "</a></td>");
 			out.println("<td>" + lista.get(i+1) + "</td>");
 			out.println("</tr>");
 		}

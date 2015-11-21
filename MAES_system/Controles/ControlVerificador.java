@@ -19,7 +19,7 @@ public class ControlVerificador {
 		return(usuario.obtenerTipo(strMatricula) == 1);
 	}
 
-	public String obtenerNombre(String strMatricula) {
-		return usuario.obtenerNombre(strMatricula);
+	public String obtenerMatricula(String strNombre) {
+		return usuario.obtenerMatricula(strNombre);
 	}
 }
