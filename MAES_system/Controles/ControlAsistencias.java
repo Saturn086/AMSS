@@ -112,4 +112,9 @@ public class ControlAsistencias {
 
 		asistencia.guardarAsistenciaFin(strMatricula, strHora);
 	}
+	
+	
+	public void borrarAsistencia(String strMatricula, String strFecha, String strHora) {
+		asistencia.borrarAsistencia(strMatricula, strFecha, strHora);
+	}
 }
