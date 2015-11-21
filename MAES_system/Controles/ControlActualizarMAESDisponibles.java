@@ -78,4 +78,13 @@ public class ControlActualizarMAESDisponibles {
 	public void asginarUbicacion(String strMatricula, int intUbicacion) {
 		asesoria.asignarUbicacion(strMatricula, intUbicacion);
 	}
+	
+	public boolean obtenerDisponibilidad(String strMatricula) {
+		return asesoria.obtenerDisponibilidad(strMatricula);
+	}
+	
+	
+	public void modificarDisponibilidad(String strMatricula) {
+		asesoria.modificarDisponibilidad(strMatricula);
+	}
 }
