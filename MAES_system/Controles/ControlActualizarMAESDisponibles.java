@@ -1,4 +1,4 @@
-﻿package controles;
+package controles;
 import entidades.Usuario;
 import entidades.Materia;
 import entidades.Asesoria;
@@ -54,7 +54,7 @@ public class ControlActualizarMAESDisponibles {
 		return resultadoList;
 
 	}
-	
+
 	// Mostrar los MAEs que se encuentran disponibles.
 	public ArrayList<String> desplegarMaesDisp() {
 		ArrayList<String> lstStrNombres = new ArrayList<String>();
@@ -62,15 +62,15 @@ public class ControlActualizarMAESDisponibles {
 
 		for(int i = 1; i <= intCantUbicacion; i++) {
 			String strUbicacion = ubicacion.strObtenerNombre(i);
-			
+
 			lstStrNombres.add(i + "");
 			lstStrNombres.add(strUbicacion);
 		}
-		
+
 		return lstStrNombres;
 	}
-	
-	
+
+
 	// Mostrar los MAEs que se encuentran disponibles.
 	public void asginarUbicacion(String strMatricula) {
 		asesoria.asignarUbicacion(strMatricula);
