@@ -11,6 +11,7 @@ public class InterfazControlAsesorias extends HttpServlet {
 	PrintWriter out;
 	//declarar controladores
 	ControlVerificador cvVerificador;
+	ControlModificadorAlumnosAtendidos cmAlumnos;
 
 
 	//Es importante observar que todos los metodos definen la operacion GET para
@@ -53,6 +54,7 @@ public class InterfazControlAsesorias extends HttpServlet {
 
 	public void mostrarControl() {
 		cvVerificador = new ControlVerificador();
+		cmAlumnos = new ControlModificadorAlumnosAtendidos();
 		String strMatricula = thisRequest.getParameter("matricula");
 		String strNombre = cvVerificador.obtenerNombre(strMatricula);
 		out.println("<p> Nombre de MAE: " + strNombre + "</p>");
@@ -60,7 +62,23 @@ public class InterfazControlAsesorias extends HttpServlet {
 		out.println("<a href=\"#\"> Cambiar status </a>");
 		out.println("</p>");
 		out.println("<a href=\"#\"> Finalizar Sesión </a>");
-		
+		ArrayList<String> materiasList = cmAlumnos.obtenerMateriasYAlumnos(strMatricula);
+
+		out.println("<div class=\"center-block\" style=\"width:80%\">");
+		out.println("<table class=\"table text-center\">");
+		out.println("<tr>");
+		out.println("<th class=\"text-center\">Materia</th>");
+		out.println("<th class=\"text-center\">Alumnos</th>");
+		out.println("</tr>");
+		for(int i=0;i<materiasList.size();i+=2) {
+			out.println("<tr>");
+			out.println("<td>" + materiasList.get(i) + "</td>");
+			out.println("<td>" + materiasList.get(i+1) + "</td>");
+			out.println("</tr>");
+		}
+		out.println("</table>");
+		out.println("<div>");
+
 
 	}
 
