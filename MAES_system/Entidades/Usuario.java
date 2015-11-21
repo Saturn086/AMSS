@@ -32,6 +32,7 @@ public class Usuario {
 				}
 			}
 			else {
+				rs.close();
 				return false;
 			}
 		}
@@ -52,6 +53,7 @@ public class Usuario {
 				return strNombre;
 			}
 			else {
+				rs.close();
 				return "Nombre no disponible.";
 			}
 		}
@@ -72,6 +74,7 @@ public class Usuario {
 				return iTipo;
 			} 
 			else {
+				rs.close();
 				return 2; //2 no es un tipo valido, simboliza error
 			}
 		} catch (SQLException e) {
@@ -90,9 +93,11 @@ public class Usuario {
 			ResultSet rs = stmt.getResultSet();
 			
 			if (rs.next()) {	// Si hay 1 registro, si es mae.
+				rs.close();
 				return true;
 			} 
 			else {				// Si no, no.
+				rs.close();
 				return false; 
 			}
 			
@@ -113,6 +118,7 @@ public class Usuario {
 				return strContrasena;
 			} 
 			else {
+				rs.close();
 				return "";
 			}
 		}

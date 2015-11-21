@@ -29,6 +29,7 @@ public class Materia {
 				return strNombre;
 			}
 			else {
+				rs.close();
 				return "Nombre no disponible.";
 			}
 		} catch (SQLException e) {}
@@ -46,6 +47,7 @@ public class Materia {
 				return true;
 			}
 			else {
+				rs.close();
 				return false;
 			}
 		} catch (SQLException e) {}
