@@ -70,7 +70,7 @@ public class Usuario {
 				int iTipo = rs.getInt ("tipo");
 				rs.close();
 				return iTipo;
-			} 
+			}
 			else {
 				return 2; //2 no es un tipo valido, simboliza error
 			}
@@ -80,7 +80,7 @@ public class Usuario {
 
 		return 2;
 	}
-	
+
 	public boolean verificarEsMae(String strMatricula) {
 		try {
 			stmt.executeQuery (
@@ -88,19 +88,39 @@ public class Usuario {
 				"FROM Usuario" +
 				"WHERE matricula = " + "\'" + strMatricula + "\'");
 			ResultSet rs = stmt.getResultSet();
-			
+
 			if (rs.next()) {	// Si hay 1 registro, si es mae.
 				return true;
-			} 
-			else {				// Si no, no.
-				return false; 
 			}
-			
+			else {				// Si no, no.
+				return false;
+			}
+
 		} catch (SQLException e) {
 			System.out.println("Error en verificarEsMae" + " dentro de Usuario.");
 		}
 
 		return false;
+	}
+
+	public String obtenerMatricula(String strNombre) {
+		try {
+			stmt.executeQuery ("SELECT matricula FROM Usuario WHERE nombre = " + "\'" + strNombre + "\'");
+			ResultSet rs = stmt.getResultSet();
+			if (rs.next()) { //Va al primer registro si lo hay
+				String strMatricula = rs.getString ("matricula");
+				rs.close();
+				return strMatricula;
+			}
+			else {
+				return "Usuario no disponible.";
+			}
+		}
+		catch (SQLException e) {
+			System.out.println("Error en obtenerMatricula" + " dentro de Usuario.");
+		}
+
+		return "Nombre no disponible.";
 	}
 
 	private String obtenerContrasena(String strMatricula) {
@@ -111,7 +131,7 @@ public class Usuario {
 				String strContrasena = rs.getString ("contrasena");
 				rs.close();
 				return strContrasena;
-			} 
+			}
 			else {
 				return "";
 			}

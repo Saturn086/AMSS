@@ -4,13 +4,16 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
 import java.util.*;
+import controles.ControlAsistencias;
 import controles.ControlVerificador;
+import entidades.RowHistorial;
 
 public class InterfazHorasRealizadas extends HttpServlet {
 	HttpServletResponse thisResponse;
 	HttpServletRequest thisRequest;
 	PrintWriter out;
-	ControlVerificador cvVerifi;
+	ControlAsistencias controlAsistencias;
+	ControlVerificador controlVerificador;
 
 	//Es importante observar que todos los metodos definen la operacion GET para
 	//	que el metodo doGet sea el que se ejecuta al presionar el boton "Enviar".
@@ -22,6 +25,8 @@ public class InterfazHorasRealizadas extends HttpServlet {
 
 		out = thisResponse.getWriter();
 		//Preparar el encabezado de la pagina Web de respuesta
+
+		String strNombre = request.getParameter("nombre");
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">");
 		out.println("<HTML>");
 		out.println("<HEAD>");
@@ -29,7 +34,7 @@ public class InterfazHorasRealizadas extends HttpServlet {
 		out.println("<meta charset=\"UTF-8\">");
 		out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
 		out.println("<link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">");
-    out.println("<h3>Horas realizadas</h3> <br>");
+    out.println("<h3>Horas realizadas - " + strNombre + "</h3> <br>");
 		out.println("</HEAD>");
 		out.println("<BODY>");
 		out.println("<br> <br> <br>");
@@ -40,6 +45,15 @@ public class InterfazHorasRealizadas extends HttpServlet {
 		out.println("</div>");
 		out.println("<div class=\"panel-body\">");
 
+		controlVerificador = new ControlVerificador();
+		controlAsistencias = new ControlAsistencias();
+
+		String strMatricula =	controlVerificador.obtenerMatricula(strNombre);
+		ArrayList<RowHistorial> historial = controlAsistencias.obtenerHistorial(strMatricula);
+
+		for(RowHistorial r : historial) {
+			out.println("<p>" + r.getStrFecha() + " " + r.getStrHoraE() + " " + r.getStrHoraS() + " " + r.getStrHours() + "</p>");
+		}
 
 		out.println("</div>");
 		out.println("</div>");

@@ -1,8 +1,10 @@
 package controles;
 import entidades.Usuario;
 import entidades.Asistencia;
+import entidades.RowHistorial;
 import java.util.*;
 import java.sql.*;
+
 
 public class ControlAsistencias {
 	Asistencia asistencia;
@@ -32,4 +34,11 @@ public class ControlAsistencias {
 		return resultList;
 	}
 
+	public ArrayList<RowHistorial> obtenerHistorial(String strMatricula) {
+		ArrayList<RowHistorial> resultList = new ArrayList<RowHistorial>();
+
+		resultList = asistencia.obtenerHistorial(strMatricula);
+
+		return resultList;
+}
 }

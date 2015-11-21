@@ -18,4 +18,8 @@ public class ControlVerificador {
 	public boolean esAdministrador(String strMatricula) {
 		return(usuario.obtenerTipo(strMatricula) == 1);
 	}
+
+	public String obtenerMatricula(String strNombre) {
+		return usuario.obtenerMatricula(strNombre);
+	}
 }
