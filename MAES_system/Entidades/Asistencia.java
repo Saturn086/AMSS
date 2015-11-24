@@ -109,7 +109,7 @@ public class Asistencia {
 			}
 			rs.close();
 		} catch (SQLException e) {System.out.println("error en obtener historial ");}
-		
+
 		return resultList;
 		}
 
@@ -162,7 +162,7 @@ public class Asistencia {
 				);
 		}
 		catch (SQLException e) {
-			System.out.println("Error en guardarAsistenciaInicio" + " dentro de Asistencia.");
+			System.out.println("Error en guardarAsistenciaFin" + " dentro de Asistencia.");
 		}
 	}
 

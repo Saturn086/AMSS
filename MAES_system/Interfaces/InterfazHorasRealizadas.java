@@ -36,7 +36,6 @@ public class InterfazHorasRealizadas extends HttpServlet {
 		out.println("<meta charset=\"UTF-8\">");
 		out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
 		out.println("<link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">");
-    out.println("<h3>Horas realizadas - " + strNombre + "</h3> <br>");
 		out.println("</HEAD>");
 		out.println("<BODY>");
 		out.println("<br> <br> <br>");
@@ -46,7 +45,7 @@ public class InterfazHorasRealizadas extends HttpServlet {
 		out.println("<H1 class=\"panel-title\">Mentores Académicos de Excelencia</H1>");
 		out.println("</div>");
 		out.println("<div class=\"panel-body\">");
-
+		out.println("<h3>Horas realizadas - " + strNombre + "</h3> <br>");
 		controlVerificador = new ControlVerificador();
 		controlAsistencias = new ControlAsistencias();
 
@@ -77,10 +76,27 @@ public class InterfazHorasRealizadas extends HttpServlet {
 		String strMatricula =	controlVerificador.obtenerMatricula(strNombre);
 		ArrayList<RowHistorial> historial = controlAsistencias.obtenerHistorial(strMatricula);
 		int iI = 0;
+		out.println("<div class=\"center-block\" style=\"width:80%\">");
+		out.println("<table class=\"table text-center\">");
+		out.println("<tr>");
+		out.println("<th class=\"text-center\">Acción</th>");
+		out.println("<th class=\"text-center\">Fecha</th>");
+		out.println("<th class=\"text-center\">Hora de entrada</th>");
+		out.println("<th class=\"text-center\">Hora de salida</th>");
+		out.println("<th class=\"text-center\">Tiempo</th>");
+		out.println("</tr>");
 		for(RowHistorial r : historial) {
-			out.println("<p><a href=\"horasRealizadas?valor=" + iI + "&operacion=borrar&nombre=" + strNombre + "\">" + iI + "</a> - " + r.getStrFecha() + " " + r.getStrHoraE() + " " + r.getStrHoraS() + " " + r.getStrHours() + "</p>");
+			out.println("<tr>");
+			out.println("<td><a href=\"horasRealizadas?valor=" + iI + "&operacion=borrar&nombre=" + strNombre + "\">" + "Borrar" + "</a></td>");
+			out.println("<td>" + r.getStrFecha() + "</td>");
+			out.println("<td>" + r.getStrHoraE() + "</td>");
+			out.println("<td>" + r.getStrHoraS() + "</td>");
+			out.println("<td>" + r.getStrHours() + "</td>");
 			iI++;
+			out.println("</tr>");
 		}
+		out.println("</table>");
+		out.println("<div>");
 	}
 
 }

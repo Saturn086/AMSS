@@ -88,14 +88,16 @@ public class InterfazInicioSesion extends HttpServlet {
 
 		boolean boolExistente = cvVerifi.verificarCrendenciales(strMatricula, strContrasena);
 		if (boolExistente) {
-			caAsistencias.guardarAsistenciaInicio(strMatricula);
+			if(!strMatricula.equals("A00000000"))
+				caAsistencias.guardarAsistenciaInicio(strMatricula);
 			out.println("<p>¡¡¡Bienvenido " + strMatricula + "!!!</p>");
-			out.println("<a href=\"registrarUbicacion?matricula=" + strMatricula + "\" type=\"button\" class=\"btn btn-primary\"> Registar mi Ubicacion </a> <br>");
-			//ligas a funciones de administradores
+
+			//funciones de administradores
 			if(strMatricula.equals("A00000000")) {
-				out.println("<br> <p> Funciones de administrador </p>");
 				out.println("<a href=\"mostrarMaes?matricula=" + strMatricula + "\" type=\"button\" class=\"btn btn-primary\"> Lista de MAES Disponibles </a> <br> <br>");
 				out.println("<a href=\"mostrarAsistencia?matricula=" + strMatricula + "\" type=\"button\" class=\"btn btn-primary\"> Lista de Asistencia de MAES </a> <br>");
+			} else {
+				out.println("<a href=\"registrarUbicacion?matricula=" + strMatricula + "\" type=\"button\" class=\"btn btn-primary\"> Registar mi Ubicacion </a> <br>");
 			}
 		} else {
 			out.println("<form method=\"GET\" action=\"InicioSesion\">");
